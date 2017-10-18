@@ -11,7 +11,7 @@ TEST(silenciosTEST,unAudio){
     int prof = 16;
     int freq = 35;
     audio a = {0,0,0,0,1,2,3,0,0,0,0,0,5,6,0,0,3};
-    lista_intervalos ts = {{0,0.1142},{0.2,0.3428}};
+    lista_intervalos ts = {make_tuple(0, 0.1142),make_tuple(0.2, 0.3428)} ;
 
     lista_intervalos t_out = silencios(a,prof,freq,1);
     cout << "encontrados " << ts.size() << " intervalos" << endl;

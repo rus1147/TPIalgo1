@@ -17,13 +17,13 @@ int elAcaparador(sala m, int freq, int prof){
 
 /************************** EJERCICIO ardillizar **************************/
 sala ardillizar(sala m, int prof, int freq){
-    sala res();
+    sala res{};
     return res;
 }
 
 /************************** EJERCICIO flashElPerezoso **************************/
 sala flashElPerezoso(sala m, int prof, int freq){
-    sala res();
+    sala res{};
     return res;
 }
 

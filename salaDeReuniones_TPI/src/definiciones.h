@@ -22,7 +22,7 @@ using namespace std;
 // DEFINICIONES DE TIPO
 typedef vector<int> audio;
 typedef vector<audio> sala;
-typedef tuple<float,float> intervalo;
+typedef tuple<float , float > intervalo;
 typedef vector<intervalo> lista_intervalos;
 typedef vector<float> lista_distancias;
 typedef tuple<int,lista_distancias> locutor;
