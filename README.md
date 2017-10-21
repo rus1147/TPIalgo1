@@ -14,7 +14,7 @@
 - [] medirLaDistancia(sala m, audio frase, int freq, int prof)
 
 
-##Auxiliares hechos
+## Auxiliares hechos
 
 - bool profValida(int prof)
 - bool freqValida(int freq)
