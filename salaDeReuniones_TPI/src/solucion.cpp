@@ -3,6 +3,7 @@
 #include "ejercicios.h"
 #include "Funciones_TPI.h"
 #include "math.h"
+#include "auxiliar.h"
 
 /************************** EJERCICIO grabacionValida **************************/
 bool grabacionValida(audio s, int prof, int freq){
