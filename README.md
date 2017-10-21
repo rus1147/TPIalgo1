@@ -16,12 +16,12 @@
 
 ##Auxiliares hechos
 
--bool profValida(int prof);
--bool freqValida(int freq);
--bool conPrecision(tiempo t,int p);
--bool enRango(audio a, int prof);
--bool sonTodosCeros(vector<int> s);
--tiempo enSegundos(int n,int freq);
--tiempo duracion(audio a,int freq);
--bool duraMasDe(tiempo t, audio a, int freq);
--vector<int> subSeq(vector<int> s,int i, int j);
+- bool profValida(int prof)
+- bool freqValida(int freq)
+- bool conPrecision(tiempo t,int p)
+- bool enRango(audio a, int prof)
+- bool sonTodosCeros(vector<int> s)
+- tiempo enSegundos(int n,int freq)
+- tiempo duracion(audio a,int freq)
+- bool duraMasDe(tiempo t, audio a, int freq);
+- vector<int> subSeq(vector<int> s,int i, int j);
