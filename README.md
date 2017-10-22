@@ -25,3 +25,10 @@
 - tiempo duracion(audio a,int freq)
 - bool duraMasDe(tiempo t, audio a, int freq);
 - vector<int> subSeq(vector<int> s,int i, int j);
+- bool micFunciona(audio a,int freq);
+- bool audioValido(audio a,int prof, int freq);
+- bool intervaloEnRango(intervalo i);
+- bool intervalosEnRango(lista_intervalos intervalos,tiempo durTotal);
+- bool enOrden(lista_intervalos intervalos);
+- bool todosConPrecision(lista_intervalos intervalos,int precision);
+- bool intervalosValidos(lista_intervalos intervalos,tiempo durTotal);
