@@ -30,6 +30,7 @@ CMakeFiles/salaDeReunion.dir/main.o: ../lib/googletest-master/googletest/include
 CMakeFiles/salaDeReunion.dir/main.o: ../main.cpp
 
 CMakeFiles/salaDeReunion.dir/solucion.o: ../Funciones_TPI.h
+CMakeFiles/salaDeReunion.dir/solucion.o: ../auxiliar.cpp
 CMakeFiles/salaDeReunion.dir/solucion.o: ../auxiliar.h
 CMakeFiles/salaDeReunion.dir/solucion.o: ../definiciones.h
 CMakeFiles/salaDeReunion.dir/solucion.o: ../ejercicios.h

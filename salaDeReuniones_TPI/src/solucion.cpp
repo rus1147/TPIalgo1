@@ -4,10 +4,11 @@
 #include "Funciones_TPI.h"
 #include "math.h"
 #include "auxiliar.h"
+#include "auxiliar.cpp"
 
 /************************** EJERCICIO grabacionValida **************************/
     bool grabacionValida(audio s, int prof, int freq){
-    return false;
+    return audioValido(s,prof,freq);
 }
 
 

@@ -300,6 +300,12 @@ fstream
 definiciones.h
 /home/ruslan/Facultad/Algo1 2017/TPI2017/TPIalgo1/salaDeReuniones_TPI/src/definiciones.h
 
+/home/ruslan/Facultad/Algo1 2017/TPI2017/TPIalgo1/salaDeReuniones_TPI/src/auxiliar.cpp
+auxiliar.h
+/home/ruslan/Facultad/Algo1 2017/TPI2017/TPIalgo1/salaDeReuniones_TPI/src/auxiliar.h
+math.h
+/home/ruslan/Facultad/Algo1 2017/TPI2017/TPIalgo1/salaDeReuniones_TPI/src/math.h
+
 /home/ruslan/Facultad/Algo1 2017/TPI2017/TPIalgo1/salaDeReuniones_TPI/src/auxiliar.h
 iostream
 -
@@ -316,6 +322,8 @@ iostream
 vector
 -
 tuple
+-
+array
 -
 
 /home/ruslan/Facultad/Algo1 2017/TPI2017/TPIalgo1/salaDeReuniones_TPI/src/ejercicios.h
@@ -345,6 +353,8 @@ math.h
 /home/ruslan/Facultad/Algo1 2017/TPI2017/TPIalgo1/salaDeReuniones_TPI/src/math.h
 auxiliar.h
 /home/ruslan/Facultad/Algo1 2017/TPI2017/TPIalgo1/salaDeReuniones_TPI/src/auxiliar.h
+auxiliar.cpp
+/home/ruslan/Facultad/Algo1 2017/TPI2017/TPIalgo1/salaDeReuniones_TPI/src/auxiliar.cpp
 
 /home/ruslan/Facultad/Algo1 2017/TPI2017/TPIalgo1/salaDeReuniones_TPI/src/tests/ardillizarTEST.cpp
 ../Funciones_TPI.h

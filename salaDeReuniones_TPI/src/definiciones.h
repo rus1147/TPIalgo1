@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+#include <array>
 
 using namespace std;
 
