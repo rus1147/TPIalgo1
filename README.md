@@ -4,7 +4,7 @@
 ## checklist
 
 - [X] bool grabacionValida(audio s, int prof, int freq)
-- [] int elAcaparador(sala m, int freq, int prof)
+- [X] int elAcaparador(sala m, int freq, int prof)
 - [] sala ardillizar(sala m, int prof, int freq)
 - [] sala flashElPerezoso(sala m, int prof, int freq)
 - [] lista_intervalos silencios(audio s, int prof, int freq, int umbral)
@@ -34,3 +34,7 @@
 - bool intervalosValidos(lista_intervalos intervalos,tiempo durTotal);
 - bool salaValida(sala m, int prof, int freq);
 - bool esMatriz(sala m);
+- bool hayUnicoAcapador(sala m, int prof, int freq);
+- bool acapara(sala m, int prof, int freq, int p);
+- int intesidadMedia(audio a);
+- int indiceEnTiempo(tiempo t, audio a,int freq);

@@ -22,8 +22,13 @@ bool intervaloEnRango(intervalo i);
 bool intervalosEnRango(lista_intervalos intervalos,tiempo durTotal);
 bool enOrden(lista_intervalos intervalos);
 bool todosConPrecision(lista_intervalos intervalos,int precision);
-bool intervalosValidos(lista_intervalos intervalos,tiempo durTotal);//
+bool intervalosValidos(lista_intervalos intervalos,tiempo durTotal);
 bool salaValida(sala m, int prof, int freq);
-bool esMatriz(sala m);
+bool esMatriz(sala m);//
+bool hayUnicoAcapador(sala m, int prof, int freq);
+bool acapara(sala m, int prof, int freq, int p);
+int intesidadMedia(audio a);
+int indiceEnTiempo(tiempo t, audio a,int freq);
+
 
 #endif //SALADEREUNION_AUXILIAR_H

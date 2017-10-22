@@ -140,3 +140,45 @@ bool esMatriz(sala m){
 /*bool esSilencio(audio a,intervalo inter, int freq, amplitud umbral){
 
 }*/
+bool hayUnicoAcapador(sala m, int prof, int freq){
+    if(m.size()>0){
+        int p=0;
+        while(p<m.size()){
+            if(acapara(m,prof,freq,p)){
+                p++;
+            }else{
+                return false;
+            }
+            return true;
+        }
+    }
+    else{
+        return false;
+        }
+    }
+bool acapara(sala m, int prof, int freq, int p){
+    int x=0;
+    bool acapar=false;
+    if(x!=p){
+        while(x<m.size()){
+            if(intesidadMedia(m[x])<intesidadMedia(m[p])){
+                acapar= true;
+            }
+            x++;
+        }
+    }
+    return acapar;
+}
+int intesidadMedia(audio a){
+    int i=0;
+    int sum=0;
+    while(i<a.size()){
+        sum=sum+(abs(a[i])/a.size());
+        i++;
+    }
+    return sum;
+}
+int indiceEnTiempo(tiempo t, audio a,int freq){
+    int k=freq*t;
+    return abs(k);
+}

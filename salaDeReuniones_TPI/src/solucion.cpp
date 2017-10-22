@@ -14,7 +14,15 @@
 
 /************************** EJERCICIO elAcaparador **************************/
 int elAcaparador(sala m, int freq, int prof){
-    return -1;
+    int p=0;
+    int personaRes=-1;
+    while(p<m.size()){
+        if(acapara(m,prof,freq,p)){
+           personaRes=p;
+        }
+        p++;
+        }
+    return personaRes;
 }
 
 /************************** EJERCICIO ardillizar **************************/
@@ -25,13 +33,13 @@ sala ardillizar(sala m, int prof, int freq){
 
 /************************** EJERCICIO flashElPerezoso **************************/
 sala flashElPerezoso(sala m, int prof, int freq){
-    sala res{};
+    sala res={};
     return res;
 }
 
 /************************** EJERCICIO silencios **************************/
 lista_intervalos silencios(audio s, int prof, int freq, int umbral){
-    lista_intervalos res;
+    lista_intervalos res={};
     return res;
 }
 
@@ -42,7 +50,7 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
 
 /************************** EJERCICIO sacarPausas **************************/
 audio sacarPausas(audio s, lista_intervalos sil, int freq, int prof, int umbral) {
-    audio result;
+    audio result={};
     return result;
 }
 
