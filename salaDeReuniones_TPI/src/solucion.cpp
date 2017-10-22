@@ -6,7 +6,7 @@
 #include "auxiliar.h"
 
 /************************** EJERCICIO grabacionValida **************************/
-bool grabacionValida(audio s, int prof, int freq){
+    bool grabacionValida(audio s, int prof, int freq){
     return false;
 }
 
