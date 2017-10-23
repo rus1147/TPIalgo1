@@ -182,3 +182,73 @@ int indiceEnTiempo(tiempo t, audio a,int freq){
     int k=freq*t;
     return abs(k);
 }
+bool audioArdillizado(audio a, audio a0){
+    if(a.size()==a0.size()/2){
+        int i=0;
+        while(i<a.size()){
+            if(a[i]==a0[2*i]){
+                i++;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
+bool salaArdillizada(sala m, sala m0){
+    int a=0;
+    while(a<m.size()){
+        if(audioArdillizado(m[a],m0[a])){
+            a++;
+        }else{
+            return false;
+        }
+    }
+    return true;
+}
+bool todosCerosEnPosPares(audio a){
+    int i=0;
+    bool esCerospar=false;
+    while(i<a.size()){
+        if(i%2==0){
+            esCerospar=a[i]==0;
+        }else{
+            return false;
+        }
+        i=i+2;
+    }
+    return esCerospar;
+}
+bool hayCerosEnPosPares(audio a,int freq){
+    int i=0;
+    bool hayceropospar=false;
+    while(i<a.size()){
+        int j=0;
+        while(j<a.size()){
+            if(duraMasDe(2,subSeq(a,i,j),freq) && todosCerosEnPosPares(subSeq(a,i,j))){
+                hayceropospar=true;
+            }
+            j++;
+        }
+        i++;
+    }
+    return hayceropospar;
+}
+void ardillizaraudio(sala m, sala m0){
+        int i=0;
+        while(i<m.size()){
+            m[i]=m0[2*i];
+            i++;
+            }
+}
+void ponerCerosEnPosPar(audio a){
+    int i=0;
+    while(i<a.size()){
+        if(i%2==0){
+            a[i]=0;
+        }
+        i=i+2;
+    }
+}

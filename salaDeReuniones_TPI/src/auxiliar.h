@@ -24,11 +24,17 @@ bool enOrden(lista_intervalos intervalos);
 bool todosConPrecision(lista_intervalos intervalos,int precision);
 bool intervalosValidos(lista_intervalos intervalos,tiempo durTotal);
 bool salaValida(sala m, int prof, int freq);
-bool esMatriz(sala m);//
+bool esMatriz(sala m);
 bool hayUnicoAcapador(sala m, int prof, int freq);
 bool acapara(sala m, int prof, int freq, int p);
 int intesidadMedia(audio a);
-int indiceEnTiempo(tiempo t, audio a,int freq);
+int indiceEnTiempo(tiempo t, audio a,int freq);//
+bool audioArdillizado(audio a, audio a0);
+bool salaArdillizada(sala m, sala m0);
+bool todosCerosEnPosPares(audio a);
+bool hayCerosEnPosPares(audio a,int freq);
+void ardillizaraudio(sala m, sala m0);
+void ponerCerosEnPosPar(audio a);
 
 
 #endif //SALADEREUNION_AUXILIAR_H

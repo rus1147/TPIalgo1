@@ -27,7 +27,13 @@ int elAcaparador(sala m, int freq, int prof){
 
 /************************** EJERCICIO ardillizar **************************/
 sala ardillizar(sala m, int prof, int freq){
-    sala res{};
+    sala res=m;
+    ardillizaraudio(m,res);
+    int i=0;
+    while(i<res.size()){
+        ponerCerosEnPosPar(res[i]);
+        i++;
+    }
     return res;
 }
 
