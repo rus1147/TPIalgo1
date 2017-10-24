@@ -42,8 +42,12 @@ sala ardillizar(sala m, int prof, int freq){
 
 /************************** EJERCICIO flashElPerezoso **************************/
 sala flashElPerezoso(sala m, int prof, int freq){
-    sala res={};
-    return res;
+    int i=0;
+    while(i<m.size()){
+        audioInterpolado(m[i]);
+        i++;
+    }
+    return m;
 }
 
 /************************** EJERCICIO silencios **************************/
@@ -65,7 +69,8 @@ audio sacarPausas(audio s, lista_intervalos sil, int freq, int prof, int umbral)
 
 /************************** EJERCICIO encontrarAparicion **************************/
 int encontrarAparicion(audio x, audio y){
-    return -1;
+
+    return comienzoCorrelacion(x,y);
 }
 
 /************************** EJERCICIO medirLaDistancia **************************/

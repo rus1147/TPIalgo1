@@ -1,5 +1,6 @@
 #include "auxiliar.h"
 #include "math.h"
+#include "Funciones_TPI.h"
 bool audioValido(audio a,int prof, int freq){
         return duraMasDe(1.0, a, freq) && freqValida(freq) && enRango(a, prof) && profValida(prof) && micFunciona(a, freq);
 }
@@ -262,4 +263,41 @@ audio audioSinCeros(audio a){
         i++;
     }
     return res;
+}
+
+void audioInterpolado(audio a){
+    audio res=a;
+    int i=0;
+    while(i<a.size()-1){
+        a[i]=res[2*i];
+        if(i%2==1){
+            a[i]=(res[i-1]+res[i+1])/2;
+        }
+
+        i++;
+    }
+}
+bool esMaximaCorrelacion(audio a, int startPoint, audio frase){
+    int i=0;
+    bool esCorrelacion=false;
+    while(i<(a.size()-frase.size()) && i!=startPoint){
+            if( correlacion(subSeq(a,i,i+frase.size()),frase) < correlacion(subSeq(a,startPoint,startPoint+frase.size()),frase)){
+                esCorrelacion=true;
+        } else{
+                return false;
+            }
+        i++;
+    }
+    return esCorrelacion;
+}
+int comienzoCorrelacion(audio a, audio frase){
+    int i=0;
+    int suma=0;
+    while(i<(a.size()-frase.size())){
+        if(esMaximaCorrelacion(a,i,frase)){
+            suma=suma+i;
+        }
+        i++;
+    }
+    return suma;
 }
