@@ -33,8 +33,9 @@ bool audioArdillizado(audio a, audio a0);
 bool salaArdillizada(sala m, sala m0);
 bool todosCerosEnPosPares(audio a);
 bool hayCerosEnPosPares(audio a,int freq);
-void ardillizaraudio(sala m, sala m0);
-void ponerCerosEnPosPar(audio a);
+void ardillizaraudio(audio& a);
+void ponerCerosEnPosPar(audio& a);
+audio audioSinCeros(audio a);
 
 
 #endif //SALADEREUNION_AUXILIAR_H

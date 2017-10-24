@@ -236,14 +236,14 @@ bool hayCerosEnPosPares(audio a,int freq){
     }
     return hayceropospar;
 }
-void ardillizaraudio(sala m, sala m0){
-        int i=0;
-        while(i<m.size()){
-            m[i]=m0[2*i];
-            i++;
-            }
+void ardillizaraudio(audio& a){
+    int i=0;
+    while(i<a.size()){
+        a[i]=a[2*i];
+        i++;
+    }
 }
-void ponerCerosEnPosPar(audio a){
+void ponerCerosEnPosPar(audio& a){
     int i=0;
     while(i<a.size()){
         if(i%2==0){
@@ -251,4 +251,15 @@ void ponerCerosEnPosPar(audio a){
         }
         i=i+2;
     }
+}
+audio audioSinCeros(audio a){
+    int i=0;
+    vector<int> res{};
+    while(i<a.size()){
+        if(a[i]!=0){
+            res.push_back(a[i]);
+        }
+        i++;
+    }
+    return res;
 }

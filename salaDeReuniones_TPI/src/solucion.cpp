@@ -7,7 +7,7 @@
 #include "auxiliar.cpp"
 
 /************************** EJERCICIO grabacionValida **************************/
-    bool grabacionValida(audio s, int prof, int freq){
+bool grabacionValida(audio s, int prof, int freq){
     return audioValido(s,prof,freq);
 }
 
@@ -28,10 +28,13 @@ int elAcaparador(sala m, int freq, int prof){
 /************************** EJERCICIO ardillizar **************************/
 sala ardillizar(sala m, int prof, int freq){
     sala res=m;
-    ardillizaraudio(m,res);
     int i=0;
     while(i<res.size()){
         ponerCerosEnPosPar(res[i]);
+        audioSinCeros(res[i]);
+        //revisar esta funcion
+        // ardillizaraudio(res[i]);
+        
         i++;
     }
     return res;
@@ -66,7 +69,7 @@ int encontrarAparicion(audio x, audio y){
 }
 
 /************************** EJERCICIO medirLaDistancia **************************/
-locutor medirLaDistancia(sala m, audio frase, int freq, int prof){
+/*locutor medirLaDistancia(sala m, audio frase, int freq, int prof){
     locutor out;
     return out;
-}
+}*/
