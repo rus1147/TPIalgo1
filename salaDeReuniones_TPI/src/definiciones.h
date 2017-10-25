@@ -24,7 +24,7 @@ using namespace std;
 typedef vector<int> audio;
 typedef vector<audio> sala;
 typedef float tiempo;
-typedef tuple<float , float > intervalo;
+typedef tuple<tiempo,tiempo> intervalo;
 typedef vector<intervalo> lista_intervalos;
 typedef vector<float> lista_distancias;
 typedef tuple<int,lista_distancias> locutor;

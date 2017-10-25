@@ -31,7 +31,7 @@ audio leerVectorAudio(string nombreArchivo, int& frecuencia, int& profundidad, i
     int val;
     audio vec;
     int contador = 0;
-
+    
     miArchivo.open(nombreArchivo.c_str(), ifstream::in);
     if(miArchivo.is_open()) {
         while(!miArchivo.eof()) {
@@ -58,7 +58,7 @@ audio leerVectorAudio(string nombreArchivo, int& frecuencia, int& profundidad, i
     }
     else
         cout << "Error leyendo el archivo." << endl;
-
+    
     miArchivo.close();
     return vec;
 }
