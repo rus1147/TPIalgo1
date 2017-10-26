@@ -5,7 +5,7 @@
 
 - [X] bool grabacionValida(audio s, int prof, int freq)
 - [X] int elAcaparador(sala m, int freq, int prof)
-- [] sala ardillizar(sala m, int prof, int freq)
+- [X] sala ardillizar(sala m, int prof, int freq)
 - [] sala flashElPerezoso(sala m, int prof, int freq)
 - [] lista_intervalos silencios(audio s, int prof, int freq, int umbral)
 - [] bool hayQuilombo(sala m, int prof, int freq, int umbral)

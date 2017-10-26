@@ -237,17 +237,16 @@ bool hayCerosEnPosPares(audio a,int freq){
     }
     return hayceropospar;
 }
-audio ardillizaraudio(audio a){
+void ardillizaraudio(audio& a){
     int i=0;
-    vector<int> res{};
-    while(i<a.size()){
-        if(a[i]==a[2*i]-1){
-            res.push_back(a[i]);
-        }
+    audio res{};
+    while(i<(a.size()/2)){
+        res.push_back(a[2*i]);
         i++;
     }
-    return res;
+    a=res;
 }
+
 void ponerCerosEnPosPar(audio& a){
     int i=0;
     while(i<a.size()){

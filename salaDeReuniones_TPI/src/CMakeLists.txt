@@ -3,6 +3,7 @@ project(salaDeReunion)
 
 set(CMAKE_CXX_STANDARD 11)
 
+
 add_subdirectory(lib/googletest-master)
 include_directories(lib/googletest-master/googletest/include)
 
