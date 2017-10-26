@@ -30,10 +30,11 @@ sala ardillizar(sala m, int prof, int freq){
     sala res=m;
     int i=0;
     while(i<res.size()){
+        ardillizaraudio(res[i]);
         ponerCerosEnPosPar(res[i]);
         audioSinCeros(res[i]);
         //revisar esta funcion
-        // ardillizaraudio(res[i]);
+        
         
         i++;
     }

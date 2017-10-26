@@ -33,7 +33,7 @@ bool audioArdillizado(audio a, audio a0);
 bool salaArdillizada(sala m, sala m0);
 bool todosCerosEnPosPares(audio a);
 bool hayCerosEnPosPares(audio a,int freq);
-void ardillizaraudio(audio& a);
+audio ardillizaraudio(audio a);
 void ponerCerosEnPosPar(audio& a);
 audio audioSinCeros(audio a);
 void audioInterpolado(audio a);
