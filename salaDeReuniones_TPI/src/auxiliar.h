@@ -39,5 +39,6 @@ audio audioSinCeros(audio a);
 void audioInterpolado(audio a);
 bool esMaximaCorrelacion(audio a, int startPoint, audio frase);
 int comienzoCorrelacion(audio a, audio frase);
+void negacionLogicaAux (vector<bool> &mascara);
 
 #endif //SALADEREUNION_AUXILIAR_H

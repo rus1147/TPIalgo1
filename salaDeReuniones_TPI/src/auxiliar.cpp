@@ -304,3 +304,15 @@ int comienzoCorrelacion(audio a, audio frase){
     }
     return suma;
 }
+
+void negacionLogicaAux (vector<bool> &mascara){
+    int i = 0;
+    while (i<mascara.size()){
+        if (mascara[i]==true){
+            mascara[i]=false;
+        } else {
+            mascara[i]=true;
+        }
+        i++;
+    }
+}

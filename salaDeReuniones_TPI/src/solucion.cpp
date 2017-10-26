@@ -58,6 +58,13 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
     return false;
 }
 
+/************************** EJERCICIO negacionLogica **************************/
+
+vector<bool> negacionLogica(vector<bool> mascara){
+    negacionLogicaAux(mascara);
+    return mascara;
+}
+
 /************************** EJERCICIO sacarPausas **************************/
 audio sacarPausas(audio s, lista_intervalos sil, int freq, int prof, int umbral) {
     audio result={};
