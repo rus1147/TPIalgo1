@@ -39,12 +39,13 @@ sala ardillizar(sala m, int prof, int freq){
 
 /************************** EJERCICIO flashElPerezoso **************************/
 sala flashElPerezoso(sala m, int prof, int freq){
-    int i=0;
-    while(i<m.size()){
-        audioInterpolado(m[i]);
-        i++;
+    sala res(m.size());
+
+    for (int i = 0; i < m.size(); i++) {
+        res[i] = interpolarAudio(m[i]);
     }
-    return m;
+
+    return res;
 }
 
 /************************** EJERCICIO silencios **************************/

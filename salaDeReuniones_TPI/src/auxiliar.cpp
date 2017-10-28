@@ -268,18 +268,21 @@ audio audioSinCeros(audio a){
     return res;
 }
 
-void audioInterpolado(audio a){
-    audio res=a;
-    int i=0;
-    while(i<a.size()-1){
-        a[i]=res[2*i];
-        if(i%2==1){
-            a[i]=(res[i-1]+res[i+1])/2;
-        }
+audio interpolarAudio(audio a) {
+    audio res(2*a.size() - 1);
 
-        i++;
+    for (int i = 0; i < res.size(); i++) {
+        if (i % 2 == 0) {
+            res[i] = a[i/2];
+        } else {
+            int index = (i-1)/2;
+            res[i] = (a[index] + a[index + 1])/2;
+        }
     }
+
+    return res;
 }
+
 bool esMaximaCorrelacion(audio a, int startPoint, audio frase){
     int i=0;
     bool esCorrelacion=false;
