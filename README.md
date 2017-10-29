@@ -7,7 +7,7 @@
 - [X] int elAcaparador(sala m, int freq, int prof)
 - [X] sala ardillizar(sala m, int prof, int freq)
 - [x] sala flashElPerezoso(sala m, int prof, int freq)
-- [] lista_intervalos silencios(audio s, int prof, int freq, int umbral)
+- [x] lista_intervalos silencios(audio s, int prof, int freq, int umbral)
 - [] bool hayQuilombo(sala m, int prof, int freq, int umbral)
 - [] audio sacarPausas(audio s, lista_intervalos sil, int freq, int prof, int umbral)
 - [] encontrarAparicion(audio x, audio y)
