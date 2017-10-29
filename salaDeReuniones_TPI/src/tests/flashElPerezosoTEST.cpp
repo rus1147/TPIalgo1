@@ -21,11 +21,11 @@ TEST(flashElPerezosoTEST, sample01) {
 
     sala m_out = flashElPerezoso(m, prof, freq);
 
-    EXPECT_EQ(m_out.size(), res.size());
+    ASSERT_EQ(m_out.size(), res.size());
 
     for (int i = 0; i < m_out.size(); i++) {
 
-        EXPECT_EQ(m_out[i].size(), res[i].size());
+        ASSERT_EQ(m_out[i].size(), res[i].size());
 
         for(int j = 0; j < m_out[i].size(); j++) {
             EXPECT_EQ(m_out[i][j], res[i][j]);

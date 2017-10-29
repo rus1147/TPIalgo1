@@ -49,8 +49,41 @@ sala flashElPerezoso(sala m, int prof, int freq){
 }
 
 /************************** EJERCICIO silencios **************************/
+
+intervalo makeInterval(float intervalBeginning, float intervalEnding, int freq) {
+    return make_tuple(intervalBeginning/freq, intervalEnding/freq);
+}
+
+bool isValidSilenceEnding(int silenceBeginning, int silenceEnding, int freq) {
+    return silenceEnding + 1 - silenceBeginning > 0.1*freq;
+}
+
 lista_intervalos silencios(audio s, int prof, int freq, int umbral){
-    lista_intervalos res={};
+    lista_intervalos res = {};
+
+    bool silenceBeginningFoundFlag = false;
+    int silenceBeginning = 0;
+
+    for (int i = 0; i < s.size(); i++) {
+
+        if (s[i] < umbral) {
+
+            if (!silenceBeginningFoundFlag) {
+                silenceBeginningFoundFlag = true;
+                silenceBeginning = i;
+            } else if (i == s.size() - 1 && isValidSilenceEnding(silenceBeginning, i + 1, freq)) {
+                res.push_back(makeInterval(silenceBeginning, i, freq));
+            }
+
+        } else if (silenceBeginningFoundFlag) {
+            silenceBeginningFoundFlag = false;
+
+            if (isValidSilenceEnding(silenceBeginning, i, freq)) {
+                res.push_back(makeInterval(silenceBeginning, i, freq));
+            }
+        }
+    }
+
     return res;
 }
 
