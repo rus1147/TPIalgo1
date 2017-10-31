@@ -8,7 +8,7 @@ add_subdirectory(lib/googletest-master)
 include_directories(lib/googletest-master/googletest/include)
 
 
-set(SOURCE_FILES main.cpp solucion.cpp Funciones_TPI.cpp ejercicios.h tests/grabacionValidaTEST.cpp tests/elAcaparadorTEST.cpp tests/distanciasTEST.cpp tests/encontrarAparicionTEST.cpp tests/ardillizarTEST.cpp tests/silenciosTEST.cpp tests/flashElPerezosoTEST.cpp)
+set(SOURCE_FILES main.cpp solucion.cpp Funciones_TPI.cpp ejercicios.h tests/grabacionValidaTEST.cpp tests/elAcaparadorTEST.cpp tests/distanciasTEST.cpp tests/encontrarAparicionTEST.cpp tests/ardillizarTEST.cpp tests/silenciosTEST.cpp tests/flashElPerezosoTEST.cpp tests/hayQuilomboTEST.cpp)
 add_executable(salaDeReunion ${SOURCE_FILES})
 
 set(CMAKE_CXX_FLAGS "-g --coverage")
