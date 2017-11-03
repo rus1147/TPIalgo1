@@ -308,7 +308,7 @@ int comienzoCorrelacion(audio a, audio frase){
     return suma;
 }
 
-void negacionLogicaAux (vector<bool> &mascara){
+void negacionLogica (vector<bool> &mascara){
     int i = 0;
     while (i<mascara.size()){
         if (mascara[i]==true){
@@ -318,4 +318,78 @@ void negacionLogicaAux (vector<bool> &mascara){
         }
         i++;
     }
+}
+
+lista_intervalos crearTuplas (string nombreArchivo, int& frecuencia, int& profundidad, int& duracion){
+    lista_intervalos v;
+    int i = 0;
+    vector<int> m = leerVectorAudio(nombreArchivo, frecuencia, profundidad, duracion);
+    while(i<m.size()){
+        tuple<int, int> tuple1 = make_tuple(m[i],m[i+1]);
+        v.push_back(tuple1);
+        i+2;
+    }
+}
+
+int cantVerdaderosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios){
+    int i = 0;
+    int cant = 0;
+    while(i<mascara1.size()){
+        if(mascara1[i]== true && mascaraSilencios[i]== true){
+            cant++;
+        }
+        i++;
+    }
+    return cant;
+}
+
+int cantVerdaderosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencios){
+    int i = 0;
+    int cant = 0;
+    while(i<mascara1.size()){
+        if(mascara1[i]== false && mascaraSilencios[i]== false){
+            cant++;
+        }
+        i++;
+    }
+    return cant;
+}
+
+int cantFalsosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios){
+    int i = 0;
+    int cant = 0;
+    while(i<mascara1.size()){
+        if(mascara1[i]== false && mascaraSilencios[i]== true){
+            cant++;
+        }
+        i++;
+    }
+    return cant;
+}
+
+int cantFalsosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencios){
+    int i = 0;
+    int cant = 0;
+    while(i<mascara1.size()){
+        if(mascara1[i]== true && mascaraSilencios[i]== false){
+            cant++;
+        }
+        i++;
+    }
+    return cant;
+}
+
+float precision (vector<bool> m1, vector<bool> ms){
+    float p = cantVerdaderosPositivos(m1,ms) / (cantVerdaderosPositivos(m1,ms) + cantFalsosPositivos(m1,ms));
+    return p;
+}
+
+float recall (vector<bool> m1, vector<bool> ms){
+    float p = cantVerdaderosPositivos(m1,ms) / (cantVerdaderosPositivos(m1,ms) + cantFalsosNegativos(m1,ms));
+    return p;
+}
+
+float f1score (vector<bool> m1, vector<bool> ms){
+    float f1 = 2 * ((precision(m1,ms) * recall(m1,ms)) / (precision(m1,ms) + recall(m1,ms)));
+    return f1;
 }

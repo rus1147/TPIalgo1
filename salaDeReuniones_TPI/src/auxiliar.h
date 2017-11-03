@@ -39,6 +39,14 @@ audio audioSinCeros(audio a);
 void audioInterpolado(audio a);
 bool esMaximaCorrelacion(audio a, int startPoint, audio frase);
 int comienzoCorrelacion(audio a, audio frase);
-void negacionLogicaAux (vector<bool> &mascara);
+void negacionLogica (vector<bool> &mascara);
+lista_intervalos crearTuplas (string nombreArchivo, int& frecuencia, int& profundidad, int& duracion);
+int cantVerdaderosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios);
+int cantVerdaderosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencios);
+int cantFalsosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios);
+int cantFalsosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencios);
+float precision (vector<bool> m1, vector<bool> ms);
+float recall (vector<bool> m1, vector<bool> ms);
+float f1score (vector<bool> m1, vector<bool> ms);
 
 #endif //SALADEREUNION_AUXILIAR_H
