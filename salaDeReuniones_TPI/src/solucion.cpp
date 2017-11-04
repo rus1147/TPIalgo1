@@ -187,7 +187,7 @@ audio sacarPausas(audio s, lista_intervalos sil, int freq, int prof, int umbral)
 }
 
 /************************** EJERCICIO encontrarAparicion **************************/
-int encontrarAparicion(audio x, audio y){
+int encontrarAparicion(audio x, audio y, int freq, int prof){
 
     return comienzoCorrelacion(x,y);
 }

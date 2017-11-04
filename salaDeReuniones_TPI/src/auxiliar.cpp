@@ -289,12 +289,13 @@ bool esMaximaCorrelacion(audio a, int startPoint, audio frase){
     while(i<(a.size()-frase.size()) && i!=startPoint){
             if( correlacion(subSeq(a,i,i+frase.size()),frase) < correlacion(subSeq(a,startPoint,startPoint+frase.size()),frase)){
                 esCorrelacion=true;
-        } else{
+            } else{
                 return false;
             }
         i++;
     }
     return esCorrelacion;
+    
 }
 int comienzoCorrelacion(audio a, audio frase){
     int i=0;

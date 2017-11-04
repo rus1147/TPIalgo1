@@ -8,7 +8,7 @@ TEST(elAcaparadorTEST, prueba){
             {10,0,0,9,4,5},
             {5,7,8,9,2,1},
     };
-    int freq = 3;
-    int prof = 4;
+    int freq = 4;
+    int prof = 16   ;
     EXPECT_EQ(3, elAcaparador(m, freq, prof));
 }
