@@ -331,6 +331,40 @@ lista_intervalos crearTuplas (string nombreArchivo, int& frecuencia, int& profun
     }
 }
 
+vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
+    float i = 0;
+    int j = 0;
+    vector<bool> mascara = {};
+
+    while (i < dur) {
+
+        while (j < tiempos.size()) {
+
+            if (i < get<0>(tiempos[j])) {
+
+                mascara.push_back(false);
+                i = i + 0, 01;
+
+            } else {
+
+                if (i >= get<0>(tiempos[j]) && i < get<1>(tiempos[j])) {
+
+                    mascara.push_back(true);
+                    i = i + 0, 01;
+
+                } else {
+
+                    j++;
+                }
+            }
+        }
+
+        mascara.push_back(false);
+        i = i + 0,01;
+    }
+}
+
+
 int cantVerdaderosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios){
     int i = 0;
     int cant = 0;

@@ -48,5 +48,6 @@ int cantFalsosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencios);
 float precision (vector<bool> m1, vector<bool> ms);
 float recall (vector<bool> m1, vector<bool> ms);
 float f1score (vector<bool> m1, vector<bool> ms);
+vector<bool> enmascarar (float dur, lista_intervalos tiempos);
 
 #endif //SALADEREUNION_AUXILIAR_H
