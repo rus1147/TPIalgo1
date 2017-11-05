@@ -138,9 +138,6 @@ bool esMatriz(sala m){
     }
     return true;
 }
-/*bool esSilencio(audio a,intervalo inter, int freq, amplitud umbral){
-
-}*/
 bool hayUnicoAcapador(sala m, int prof, int freq){
     if(m.size()>0){
         int p=0;
@@ -179,8 +176,8 @@ int intesidadMedia(audio a){
     }
     return sum;
 }
-int indiceEnTiempo(tiempo t, audio a,int freq){
-    int k=freq*t;
+int indiceEnTiempo(tiempo t,int freq){
+    int k=(freq*t);
     return abs(k);
 }
 bool audioArdillizado(audio a, audio a0){
@@ -504,3 +501,104 @@ lista_intervalos noSilencios(audio s, int prof, int freq, int umbral){
     
     return res;
 }
+bool esSilencio(audio a,intervalo inter, int freq, int umbral){
+    if(intervaloEnRango(inter,duracion(a,freq))){
+        if((get<1>(inter)-get<0>(inter))>0.1 && conPrecisionEnMuestra(get<0>(inter),freq) && conPrecisionEnMuestra(get<1>(inter),freq)){
+            int k=indiceEnTiempo(get<0>(inter),freq);
+            while(k<indiceEnTiempo(get<1>(inter),freq)){
+                if(abs(a[k])<umbral){
+                    if(indiceEnTiempo(get<0>(inter),freq)!=0){
+                        if(a[indiceEnTiempo(get<0>(inter),freq)-1]<umbral){
+                            return false;
+                        }
+                    } else{
+                        return false;
+                    }
+                    if(indiceEnTiempo(get<1>(inter),freq)!=a.size()){
+                        if(a[indiceEnTiempo(get<1>(inter),freq)-1]<umbral){
+                            return false;
+                        }
+                    } else{
+                        return false;
+                    }
+                } else{
+                    return false;
+                }
+                k++;
+            }
+        } else{
+            return false;
+        }
+        return true;
+    } else{
+        return false;
+    }
+}
+bool conPrecisionEnMuestra(tiempo t, int freq){
+    int k=freq*t;
+    return t=(abs(k))/freq;
+}
+int cantSilencios(audio a, int freq,int umbral, int hasta){
+    int i=0;
+    int sum=0;
+    while(i<=hasta){
+        if(haySilencioQueLoContiene(a,i,freq,umbral)){
+            sum=sum+1;
+        }
+        i++;
+    }
+    return sum;
+}
+bool haySilencioQueLoContiene(audio a,int i,int freq,int umbral){
+    float in=0.0;
+    float fn=0.0;
+    bool haySilence= false;
+    while(in<a.size()){
+        fn=in;
+        while(fn<a.size()){
+            tuple<float,float> inter(in,fn);
+            if(intervaloEnRango(inter,duracion(a,freq))){
+                if(get<0>(inter)<=enSegundos(i,freq) && enSegundos(i,freq)<get<1>(inter) && esSilencio(a,inter,freq,umbral)){
+                    return true;
+                }
+            }
+            fn++;
+        }
+        in++;
+    }
+    return haySilence;
+    
+}
+audio sacarSilencios(audio a, int freq, int prof, int umbral){
+    audio res{};
+    int i=0;
+    while(i<a.size()){
+        if(a[i]!=0){
+            res.push_back(a[i]);
+        }
+        i++;
+    }
+    return res;
+    
+    
+    /*float in=0.0;
+    float fn=0.0;
+    bool haySilence= false;
+    while(in<a.size()){
+            fn=in;
+            while(fn<a.size() && in!=0){
+                tuple<float,float> inter(in,fn);
+                if(!esSilencio(a,inter,freq,umbral) && fn!=0){
+                   int k=fn;
+                    //estoy seguro que esto tiene repetidos, pero se tiene que corregir
+                    
+                        res.push_back(a[k]);
+                        
+                    }
+                fn++;
+            }
+        in++;
+    }*/
+    
+}
+    

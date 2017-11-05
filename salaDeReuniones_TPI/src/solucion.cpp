@@ -99,8 +99,9 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
 }
 
 /************************** EJERCICIO sacarPausas **************************/
-audio sacarPausas(audio s, lista_intervalos sil, int freq, int prof, int umbral) {
-    audio result={};
+audio sinSilencios(audio s, int freq, int prof, int umbral) {
+    audio result=sacarSilencios(s,freq,prof,umbral);
+    
     return result;
 }
 

@@ -9,7 +9,7 @@
 - [x] sala flashElPerezoso(sala m, int prof, int freq)
 - [x] lista_intervalos silencios(audio s, int prof, int freq, int umbral)
 - [x] bool hayQuilombo(sala m, int prof, int freq, int umbral)
-- [] audio sacarPausas(audio s, lista_intervalos sil, int freq, int prof, int umbral)
+- [X] audio sinSilencios(audio s, int freq, int prof, int umbral) (como los test los hice yo, habria que revisarlo)
 - [] encontrarAparicion(audio x, audio y)
 - [] medirLaDistancia(sala m, audio frase, int freq, int prof)
 

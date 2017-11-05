@@ -28,7 +28,7 @@ bool esMatriz(sala m);
 bool hayUnicoAcapador(sala m, int prof, int freq);
 bool acapara(sala m, int prof, int freq, int p);
 int intesidadMedia(audio a);
-int indiceEnTiempo(tiempo t, audio a,int freq);//
+int indiceEnTiempo(tiempo t,int freq);
 bool audioArdillizado(audio a, audio a0);
 bool salaArdillizada(sala m, sala m0);
 bool todosCerosEnPosPares(audio a);
@@ -54,4 +54,8 @@ bool isValidSilenceLength(int silenceBeginning, int silenceEnding, int freq);
 bool sortLastElement(lista_intervalos& intervalos);
 bool mergeAndValidate(lista_intervalos& intervalos1, lista_intervalos& intervalos2);
 lista_intervalos noSilencios(audio s, int prof, int freq, int umbral);
+bool conPrecisionEnMuestra(tiempo t, int freq);
+int cantSilencios(audio a, int freq,int umbral, int hasta);
+bool haySilencioQueLoContiene(audio a,int i,int freq,int umbral);
+audio sacarSilencios(audio s, int freq, int prof, int umbral);
 #endif //SALADEREUNION_AUXILIAR_H
