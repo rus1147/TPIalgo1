@@ -428,3 +428,79 @@ float f1score (vector<bool> m1, vector<bool> ms){
     float f1 = 2 * ((precision(m1,ms) * recall(m1,ms)) / (precision(m1,ms) + recall(m1,ms)));
     return f1;
 }
+intervalo makeInterval(float intervalBeginning, float intervalEnding, int freq) {
+    return make_tuple(intervalBeginning/freq, intervalEnding/freq);
+}
+bool isValidSilenceLength(int silenceBeginning, int silenceEnding, int freq) {
+    return silenceEnding - silenceBeginning > 0.1*freq;
+}
+bool sortLastElement(lista_intervalos& intervalos) {
+    
+    if (intervalos.size() < 2) {
+        return true;
+    }
+    
+    int elementPosition = 0;
+    
+    for (int i = intervalos.size() - 1; i > 0; i--) {
+        
+        intervalo intervalo1 = intervalos[i-1];
+        intervalo intervalo2 = intervalos[i];
+        
+        if (get<0>(intervalo1) < get<0>(intervalo2) ) {
+            elementPosition = i;
+            break;
+        } else if (get<0>(intervalo1) == get<0>(intervalo2) ) {
+            return false;
+        } else {
+            intervalos[i-1] = intervalo2;
+            intervalos[i] = intervalo1;
+        }
+    }
+    
+    if (elementPosition + 1 < intervalos.size()) {
+        return get<1>(intervalos[elementPosition]) <= get<0>(intervalos[elementPosition+1]);
+    } else {
+        return get<0>(intervalos[elementPosition]) >= get<1>(intervalos[elementPosition-1]);
+    }
+}
+bool mergeAndValidate(lista_intervalos& intervalos1, lista_intervalos& intervalos2){
+    
+    for (int i = 0; i < intervalos2.size(); i++) {
+        intervalos1.push_back(intervalos2[i]);
+        
+        if (!sortLastElement(intervalos1)){
+            return false;
+        }
+    }
+    
+    return true;
+}
+lista_intervalos noSilencios(audio s, int prof, int freq, int umbral){
+    lista_intervalos silenceIntervals = silencios(s, prof, freq, umbral);
+    
+    if (silenceIntervals.size() < 1) {
+        return {};
+    }
+    
+    lista_intervalos res = {};
+    
+    tiempo beginningTime = get<0>(silenceIntervals[0]);
+    if (beginningTime > 0) {
+        res.push_back(make_tuple(0, beginningTime));
+    }
+    
+    for (int i = 0; i + 1 < silenceIntervals.size(); i++) {
+        tiempo beginningTime = get<1>(silenceIntervals[i]);
+        tiempo endingTime = get<0>(silenceIntervals[i+1]);
+        
+        res.push_back(make_tuple(beginningTime, endingTime));
+    }
+    
+    tiempo endingTime = get<1>(silenceIntervals[silenceIntervals.size()-1]);
+    if (endingTime < s.size() / freq) {
+        res.push_back(make_tuple(endingTime, s.size() / freq));
+    }
+    
+    return res;
+}

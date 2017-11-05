@@ -49,5 +49,9 @@ float precision (vector<bool> m1, vector<bool> ms);
 float recall (vector<bool> m1, vector<bool> ms);
 float f1score (vector<bool> m1, vector<bool> ms);
 vector<bool> enmascarar (float dur, lista_intervalos tiempos);
-
+intervalo makeInterval(float intervalBeginning, float intervalEnding, int freq);
+bool isValidSilenceLength(int silenceBeginning, int silenceEnding, int freq);
+bool sortLastElement(lista_intervalos& intervalos);
+bool mergeAndValidate(lista_intervalos& intervalos1, lista_intervalos& intervalos2);
+lista_intervalos noSilencios(audio s, int prof, int freq, int umbral);
 #endif //SALADEREUNION_AUXILIAR_H
