@@ -334,8 +334,6 @@ vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
     int j = 0;
     vector<bool> mascara = {};
 
-    while (i < dur) {
-
         while (j < tiempos.size()) {
 
             if (i < get<0>(tiempos[j])) {
@@ -345,7 +343,7 @@ vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
 
             } else {
 
-                if (i >= get<0>(tiempos[j]) && i < get<1>(tiempos[j])) {
+                if (i > get<0>(tiempos[j]) && i <= get<1>(tiempos[j])) {
 
                     mascara.push_back(true);
                     i = i + 0, 01;
@@ -353,21 +351,25 @@ vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
                 } else {
 
                     j++;
+
                 }
             }
         }
 
-        mascara.push_back(false);
-        i = i + 0,01;
+        while(i < dur){
+            if(i > get<1>(tiempos[j-1])){
+                mascara.push_back(false);
+            }
+            i = i + 0,01;
+        }
     }
-}
 
 
 int cantVerdaderosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios){
     int i = 0;
     int cant = 0;
-    while(i<mascara1.size()){
-        if(mascara1[i]== true && mascaraSilencios[i]== true){
+    while(i < mascara1.size()){
+        if(mascara1[i] == true && mascaraSilencios[i] == true){
             cant++;
         }
         i++;
@@ -378,8 +380,8 @@ int cantVerdaderosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencio
 int cantVerdaderosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencios){
     int i = 0;
     int cant = 0;
-    while(i<mascara1.size()){
-        if(mascara1[i]== false && mascaraSilencios[i]== false){
+    while(i < mascara1.size()){
+        if(mascara1[i] == false && mascaraSilencios[i] == false){
             cant++;
         }
         i++;
@@ -387,11 +389,11 @@ int cantVerdaderosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencio
     return cant;
 }
 
-int cantFalsosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios){
+int cantFalsosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios) {
     int i = 0;
     int cant = 0;
-    while(i<mascara1.size()){
-        if(mascara1[i]== false && mascaraSilencios[i]== true){
+    while(i < mascara1.size()){
+        if(mascara1[i] == false && mascaraSilencios[i] == true){
             cant++;
         }
         i++;
@@ -402,8 +404,8 @@ int cantFalsosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios){
 int cantFalsosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencios){
     int i = 0;
     int cant = 0;
-    while(i<mascara1.size()){
-        if(mascara1[i]== true && mascaraSilencios[i]== false){
+    while(i < mascara1.size()){
+        if(mascara1[i] == true && mascaraSilencios[i] == false){
             cant++;
         }
         i++;
@@ -425,12 +427,15 @@ float f1score (vector<bool> m1, vector<bool> ms){
     float f1 = 2 * ((precision(m1,ms) * recall(m1,ms)) / (precision(m1,ms) + recall(m1,ms)));
     return f1;
 }
+
 intervalo makeInterval(float intervalBeginning, float intervalEnding, int freq) {
     return make_tuple(intervalBeginning/freq, intervalEnding/freq);
 }
+
 bool isValidSilenceLength(int silenceBeginning, int silenceEnding, int freq) {
     return silenceEnding - silenceBeginning > 0.1*freq;
 }
+
 bool sortLastElement(lista_intervalos& intervalos) {
     
     if (intervalos.size() < 2) {
@@ -461,6 +466,7 @@ bool sortLastElement(lista_intervalos& intervalos) {
         return get<0>(intervalos[elementPosition]) >= get<1>(intervalos[elementPosition-1]);
     }
 }
+
 bool mergeAndValidate(lista_intervalos& intervalos1, lista_intervalos& intervalos2){
     
     for (int i = 0; i < intervalos2.size(); i++) {
@@ -473,6 +479,7 @@ bool mergeAndValidate(lista_intervalos& intervalos1, lista_intervalos& intervalo
     
     return true;
 }
+
 lista_intervalos noSilencios(audio s, int prof, int freq, int umbral){
     lista_intervalos silenceIntervals = silencios(s, prof, freq, umbral);
     
@@ -501,6 +508,7 @@ lista_intervalos noSilencios(audio s, int prof, int freq, int umbral){
     
     return res;
 }
+
 bool esSilencio(audio a,intervalo inter, int freq, int umbral){
     if(intervaloEnRango(inter,duracion(a,freq))){
         if((get<1>(inter)-get<0>(inter))>0.1 && conPrecisionEnMuestra(get<0>(inter),freq) && conPrecisionEnMuestra(get<1>(inter),freq)){
@@ -534,10 +542,12 @@ bool esSilencio(audio a,intervalo inter, int freq, int umbral){
         return false;
     }
 }
+
 bool conPrecisionEnMuestra(tiempo t, int freq){
     int k=freq*t;
     return t=(abs(k))/freq;
 }
+
 int cantSilencios(audio a, int freq,int umbral, int hasta){
     int i=0;
     int sum=0;
@@ -549,6 +559,7 @@ int cantSilencios(audio a, int freq,int umbral, int hasta){
     }
     return sum;
 }
+
 bool haySilencioQueLoContiene(audio a,int i,int freq,int umbral){
     float in=0.0;
     float fn=0.0;
@@ -569,6 +580,7 @@ bool haySilencioQueLoContiene(audio a,int i,int freq,int umbral){
     return haySilence;
     
 }
+
 audio sacarSilencios(audio a, int freq, int prof, int umbral){
     audio res{};
     int i=0;

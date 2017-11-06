@@ -98,6 +98,12 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
     return false;
 }
 
+/************************** EJERCICIO compararSilencios **************************/
+
+/*float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio){
+
+}*/
+
 /************************** EJERCICIO sacarPausas **************************/
 audio sinSilencios(audio s, int freq, int prof, int umbral) {
     audio result=sacarSilencios(s,freq,prof,umbral);
