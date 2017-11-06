@@ -62,8 +62,8 @@ TEST(distanciasTEST, testBEEP) {
     startPOINT = POS_SMP_TEST_DISTANCIA - 3000;
     endPOINT = QUANT_SMP_TEST_DISTNACIA + 2 * 3000;
     sala m = cargarSalaAudio(lista_archivos,frecuencia,profundidad,duracion,startPOINT,endPOINT);
-
-    locutor spk = medirLaDistancia(m,frase,frecuencia,profundidad);
+    
+    tuple<int,lista_distancias> spk = medirLaDistancia(m,frase,frecuencia,profundidad);
     dst_spk = get<1>(spk);
 
     cout << "locutor " << get<0>(spk) << endl;

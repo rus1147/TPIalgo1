@@ -15,7 +15,8 @@ sala ardillizar(sala m, int prof, int freq);
 sala flashElPerezoso(sala m, int prof, int freq);
 lista_intervalos silencios(audio s, int prof, int freq, int umbral);
 bool hayQuilombo(sala m, int prof, int freq, int umbral);
-locutor medirLaDistancia(sala m, audio frase, int freq, int prof);
+tuple<int,lista_distancias> medirLaDistancia(sala m, audio frase, int freq, int prof);
+float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio);
 int encontrarAparicion(audio x, audio y, int freq, int prof);
 audio sinSilencios(audio s, int freq, int prof, int umbral);
 
