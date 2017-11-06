@@ -11,6 +11,6 @@
 - [x] bool hayQuilombo(sala m, int prof, int freq, int umbral)  #6
 - [] float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio) #7
 - [X] audio sinSilencios(audio s, int freq, int prof, int umbral) #8
-- [] encontrarAparicion(audio x, audio y) #9 (hay un test que no pasa, mande mail, creo que es un error de la catedra) 
+- [x] encontrarAparicion(audio x, audio y) #9 
 - [x] medirLaDistancia(sala m, audio frase, int freq, int prof) #10
 
