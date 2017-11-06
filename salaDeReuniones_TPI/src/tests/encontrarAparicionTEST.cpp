@@ -23,7 +23,7 @@ TEST(encontrarAparicionTEST, smallEncontrarAparicion2) {
     EXPECT_EQ(3,encontrarAparicion(target, s, freq, prof));
 }
 
-/*
+
 TEST(encontrarAparicionTEST, encontrarAparicion) {
     int frecuencia, profundidad,duracion;
     int startPOINT, endPOINT;
@@ -35,4 +35,4 @@ TEST(encontrarAparicionTEST, encontrarAparicion) {
     int posMxCrr = encontrarAparicion(subAudio(speaker,startPOINT,endPOINT),frase, frecuencia, profundidad);
     EXPECT_EQ(3854,posMxCrr);
 }
-*/
+
