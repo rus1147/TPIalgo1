@@ -110,7 +110,7 @@ audio sinSilencios(audio s, int freq, int prof, int umbral) {
     return res;
 }
 /************************** EJERCICIO encontrarAparicion #9**************************/
-int encontrarAparicion(audio target, audio s, int freq, int prof){
+int encontrarAparicion(audio s,audio target, int freq, int prof){
     int index = -1;
     float maximaCorrelacion = 0;
     int longitudTarget=target.size();
@@ -133,7 +133,7 @@ locutor medirLaDistancia (sala m, audio frase, int freq, int prof) {
     vector<int> apariciones = {};
 
     for (int i = 0; i < m.size(); i++) {
-        apariciones.push_back(encontrarAparicion(frase, m[i], freq, prof));
+        apariciones.push_back(encontrarAparicion( m[i],frase, freq, prof));
     }
 
     int firstTime = m[0].size();

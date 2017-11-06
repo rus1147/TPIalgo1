@@ -12,7 +12,7 @@ TEST(encontrarAparicionTEST, smallEncontrarAparicion) {
     audio target = {-1, -1, -1, -1, 1};
     int freq = 4;
     int prof = 16;
-    EXPECT_EQ(3,encontrarAparicion(target, s, freq, prof));
+    EXPECT_EQ(3,encontrarAparicion( s,target, freq, prof));
 }
 
 TEST(encontrarAparicionTEST, smallEncontrarAparicion2) {
@@ -20,7 +20,7 @@ TEST(encontrarAparicionTEST, smallEncontrarAparicion2) {
     audio target = {1, 1 , 1 , 1 , -1};
     int freq = 4;
     int prof = 16;
-    EXPECT_EQ(3,encontrarAparicion(target, s, freq, prof));
+    EXPECT_EQ(3,encontrarAparicion( s,target, freq, prof));
 }
 
 
