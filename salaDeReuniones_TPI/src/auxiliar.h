@@ -27,7 +27,7 @@ bool salaValida(sala m, int prof, int freq);
 bool esMatriz(sala m);
 bool hayUnicoAcapador(sala m, int prof, int freq);
 bool acapara(sala m, int prof, int freq, int p);
-int intesidadMedia(audio a);
+float intensidadMedia(audio a);
 int indiceEnTiempo(tiempo t,int freq);
 bool audioArdillizado(audio a, audio a0);
 bool salaArdillizada(sala m, sala m0);

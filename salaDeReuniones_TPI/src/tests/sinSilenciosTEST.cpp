@@ -11,7 +11,7 @@ using namespace std;
 TEST(sinSilenciosTEST, audioSinSilencios1){
     int prof = 16;
     int freq = 1;
-    int umbral=7500;
+    int umbral = 1;
     audio a1 = {0, 1, 1, 1, 0, 0, 0, 0};
     audio a2 = {1, 1, 1};
     
@@ -21,9 +21,9 @@ TEST(sinSilenciosTEST, audioSinSilencios1){
 TEST(sinSilenciosTEST, audioSinSilencios2){
     int prof = 16;
     int freq = 1;
-    int umbral=7500;
+    int umbral = 1;
     audio a1 = {0, 1, 1, 1, 0, 0, 1, 1};
-    audio a2 = {1, 1, 1,1,1};
+    audio a2 = {1, 1, 1, 1, 1};
     
     
     EXPECT_EQ(sinSilencios(a1, freq, prof, umbral), a2);
@@ -31,7 +31,7 @@ TEST(sinSilenciosTEST, audioSinSilencios2){
 TEST(sinSilenciosTEST, audioSinSilencios3){
     int prof = 16;
     int freq = 1;
-    int umbral=7500;
+    int umbral = 1;
     audio a1 = {1, 0, 0, 0, 0, 0,1};
     audio a2 = {1, 1};
     
@@ -41,8 +41,8 @@ TEST(sinSilenciosTEST, audioSinSilencios3){
 TEST(sinSilenciosTEST, audioSinSilencios4){
     int prof = 16;
     int freq = 1;
-    int umbral=7500;
-    audio a1 = {0, 0, 0, 0, 0, 0,0};
+    int umbral = 1;
+    audio a1 = {0, 0, 0, 0, 0, 0, 0};
     audio a2 = {};
     
     
@@ -52,7 +52,7 @@ TEST(sinSilenciosTEST, audioSinSilencios4){
 TEST(sinSilenciosTEST, longitudcorrecta){
     int prof = 16;
     int freq = 1;
-    int umbral=7500;
+    int umbral = 1;
     audio a1 = {0, 1, 1, 1, 0, 0, 0, 0};
     audio a2 = {1, 1, 1};
     
@@ -61,7 +61,7 @@ TEST(sinSilenciosTEST, longitudcorrecta){
 TEST(sinSilenciosTEST, esValidoAlSacarSilencios){
     int prof = 16;
     int freq = 1;
-    int umbral=7500;
+    int umbral = 1;
     audio a1 = {0, 1, 1, 1, 0, 0, 0, 0};
     audio a2 = {1, 1, 1};
     bool result= (enSegundos((a1.size()-cantSilencios(a1,freq,umbral,a1.size())),freq)>1.0);
@@ -70,7 +70,7 @@ TEST(sinSilenciosTEST, esValidoAlSacarSilencios){
 TEST(sinSilenciosTEST, noHaySilencioQueLoContiene){
     int prof = 16;
     int freq = 1;
-    int umbral=7500;
+    int umbral = 1;
     audio a1 = {0, 1, 1, 1, 0, 0, 0, 0};
     audio a2 = {1, 1, 1};
     bool result= haySilencioQueLoContiene(a2,prof,freq,umbral);

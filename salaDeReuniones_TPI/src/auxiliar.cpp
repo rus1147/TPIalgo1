@@ -154,12 +154,24 @@ bool hayUnicoAcapador(sala m, int prof, int freq){
         return false;
         }
     }
+
+
+float intensidadMedia(audio s) {
+    float sum = 0;
+
+    for (int i = 0; i < s.size(); i++) {
+        sum = sum + fabsf(s[i]);
+    }
+
+    return sum/s.size();
+}
+
 bool acapara(sala m, int prof, int freq, int p){
     int x=0;
     bool acapar=false;
     if(x!=p){
         while(x<m.size()){
-            if(intesidadMedia(m[x])<intesidadMedia(m[p])){
+            if(intensidadMedia(m[x])<intensidadMedia(m[p])){
                 acapar= true;
             }
             x++;
@@ -167,15 +179,7 @@ bool acapara(sala m, int prof, int freq, int p){
     }
     return acapar;
 }
-int intesidadMedia(audio a){
-    int i=0;
-    int sum=0;
-    while(i<a.size()){
-        sum=sum+(abs(a[i])/a.size());
-        i++;
-    }
-    return sum;
-}
+
 int indiceEnTiempo(tiempo t,int freq){
     int k=(freq*t);
     return abs(k);

@@ -8,14 +8,22 @@
 using namespace std;
 
 TEST(encontrarAparicionTEST, smallEncontrarAparicion) {
-    audio x = {0, 0, 0, -3, -3, -3, -3, 3, 0, 0};
-    audio y = {-1,-1,-1,-1, 1};
+    audio s = {0, 0, 0, -3, -3, -3, -3, 3, 0, 0};
+    audio target = {-1, -1, -1, -1, 1};
     int freq = 4;
     int prof = 16;
-    EXPECT_EQ(3,encontrarAparicion(x,y, freq, prof));
+    EXPECT_EQ(3,encontrarAparicion(target, s, freq, prof));
 }
 
-/**
+TEST(encontrarAparicionTEST, smallEncontrarAparicion2) {
+    audio s = {0, 0, 0, -3, -3, -3, -3, 3, 0, 0};
+    audio target = {1, 1 , 1 , 1 , -1};
+    int freq = 4;
+    int prof = 16;
+    EXPECT_EQ(3,encontrarAparicion(target, s, freq, prof));
+}
+
+/*
 TEST(encontrarAparicionTEST, encontrarAparicion) {
     int frecuencia, profundidad,duracion;
     int startPOINT, endPOINT;

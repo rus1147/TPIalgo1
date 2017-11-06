@@ -10,8 +10,8 @@
 - [x] lista_intervalos silencios(audio s, int prof, int freq, int umbral)
 - [x] bool hayQuilombo(sala m, int prof, int freq, int umbral)
 - [X] audio sinSilencios(audio s, int freq, int prof, int umbral) (como los test los hice yo, habria que revisarlo)
-- [] encontrarAparicion(audio x, audio y)
-- [] medirLaDistancia(sala m, audio frase, int freq, int prof)
+- [x] encontrarAparicion(audio x, audio y)
+- [x] medirLaDistancia(sala m, audio frase, int freq, int prof)
 
 
 ## Auxiliares hechos

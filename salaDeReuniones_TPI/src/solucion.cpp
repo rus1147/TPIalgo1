@@ -106,19 +106,74 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
 
 /************************** EJERCICIO sacarPausas **************************/
 audio sinSilencios(audio s, int freq, int prof, int umbral) {
-    audio result=sacarSilencios(s,freq,prof,umbral);
-    
-    return result;
+    audio res = {};
+
+    for (int i = 0; i < s.size(); i++) {
+        if (abs(s[i]) >= umbral) {
+            res.push_back(s[i]);
+        }
+    }
+
+    return res;
 }
 
 /************************** EJERCICIO encontrarAparicion **************************/
-int encontrarAparicion(audio x, audio y, int freq, int prof){
+int encontrarAparicion(audio target, audio s, int freq, int prof){
 
-    return comienzoCorrelacion(x,y);
+    int index = -1;
+    float maximaCorrelacion = 0;
+
+    for (int i = 0; i <= s.size() - target.size(); i++) {
+
+        float aux = correlacion(subSeq(s, i, i + target.size()), target);
+
+        if (fabsf(aux) > fabsf(maximaCorrelacion)) {
+            maximaCorrelacion = aux;
+            index = i;
+        }
+    }
+
+    return index;
 }
 
 /************************** EJERCICIO medirLaDistancia **************************/
-/*locutor medirLaDistancia(sala m, audio frase, int freq, int prof){
-    locutor out;
-    return out;
-}*/
+locutor medirLaDistancia (sala m, audio frase, int freq, int prof) {
+
+    vector<int> apariciones = {};
+
+    for (int i = 0; i < m.size(); i++) {
+        apariciones.push_back(encontrarAparicion(frase, m[i], freq, prof));
+    }
+
+    int firstTime = m[0].size();
+
+    for (int i = 0; i < m.size(); i++) {
+        if (apariciones[i] < firstTime) {
+            firstTime = apariciones[i];
+        }
+    }
+
+    int locutor;
+    float maximaIntensidadMedia = 0;
+
+    for (int i = 0; i < m.size(); i++) {
+        if (apariciones[i] == firstTime) {
+            float im = intensidadMedia(subSeq(m[i], firstTime, firstTime + frase.size()));
+
+            if (im > maximaIntensidadMedia) {
+                maximaIntensidadMedia = im;
+                locutor = i;
+            }
+        }
+    }
+
+    vector<float> distancias = {};
+
+    for (int i = 0; i < m.size(); i++) {
+        if (i != locutor) {
+            distancias.push_back((apariciones[i] - firstTime)*VELOCIDAD_SONIDO/freq);
+        }
+    }
+
+    return make_tuple(locutor, distancias);
+}
