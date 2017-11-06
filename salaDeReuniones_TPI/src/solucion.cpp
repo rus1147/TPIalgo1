@@ -6,13 +6,11 @@
 #include "auxiliar.h"
 #include "auxiliar.cpp"
 
-/************************** EJERCICIO grabacionValida **************************/
+/************************** EJERCICIO grabacionValida #1 **************************/
 bool grabacionValida(audio s, int prof, int freq){
     return audioValido(s,prof,freq);
 }
-
-
-/************************** EJERCICIO elAcaparador **************************/
+/************************** EJERCICIO elAcaparador #2**************************/
 int elAcaparador(sala m, int freq, int prof){
     int p=0;
     int personaRes=-1;
@@ -24,8 +22,7 @@ int elAcaparador(sala m, int freq, int prof){
         }
     return personaRes;
 }
-
-/************************** EJERCICIO ardillizar **************************/
+/************************** EJERCICIO ardillizar #3**************************/
 sala ardillizar(sala m, int prof, int freq){
     int i=0;
     sala resultado{};
@@ -36,8 +33,7 @@ sala ardillizar(sala m, int prof, int freq){
     }
     return resultado;
 }
-
-/************************** EJERCICIO flashElPerezoso **************************/
+/************************** EJERCICIO flashElPerezoso #4**************************/
 sala flashElPerezoso(sala m, int prof, int freq){
     sala res(m.size());
 
@@ -47,8 +43,7 @@ sala flashElPerezoso(sala m, int prof, int freq){
 
     return res;
 }
-
-/************************** EJERCICIO silencios **************************/
+/************************** EJERCICIO silencios #5**************************/
 lista_intervalos silencios(audio s, int prof, int freq, int umbral){
     lista_intervalos res = {};
 
@@ -77,8 +72,7 @@ lista_intervalos silencios(audio s, int prof, int freq, int umbral){
 
     return res;
 }
-
-/************************** EJERCICIO hayQuilombo **************************/
+/************************** EJERCICIO hayQuilombo #6**************************/
 bool hayQuilombo(sala m, int prof, int freq, int umbral){
 
     if (m.size() < 2) {
@@ -97,14 +91,13 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
 
     return false;
 }
-
-/************************** EJERCICIO compararSilencios **************************/
+/************************** EJERCICIO compararSilencios #7**************************/
 
 /*float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio){
 
 }*/
 
-/************************** EJERCICIO sacarPausas **************************/
+/************************** EJERCICIO sacarPausas #8**************************/
 audio sinSilencios(audio s, int freq, int prof, int umbral) {
     audio res = {};
 
@@ -116,16 +109,15 @@ audio sinSilencios(audio s, int freq, int prof, int umbral) {
 
     return res;
 }
-
-/************************** EJERCICIO encontrarAparicion **************************/
+/************************** EJERCICIO encontrarAparicion #9**************************/
 int encontrarAparicion(audio target, audio s, int freq, int prof){
-
     int index = -1;
     float maximaCorrelacion = 0;
-
+    int longitudTarget=target.size();
+    int longitudAudio=s.size();
     for (int i = 0; i <= s.size() - target.size(); i++) {
 
-        float aux = correlacion(subSeq(s, i, i + target.size()), target);
+        float aux = correlacion(subSeq(s, i, (int) (i + target.size())), target);
 
         if (fabsf(aux) > fabsf(maximaCorrelacion)) {
             maximaCorrelacion = aux;
@@ -135,8 +127,7 @@ int encontrarAparicion(audio target, audio s, int freq, int prof){
 
     return index;
 }
-
-/************************** EJERCICIO medirLaDistancia **************************/
+/************************** EJERCICIO medirLaDistancia #10**************************/
 locutor medirLaDistancia (sala m, audio frase, int freq, int prof) {
 
     vector<int> apariciones = {};
