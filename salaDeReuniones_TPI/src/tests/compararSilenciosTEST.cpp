@@ -1,5 +1,3 @@
-/**
-
 #include "../Funciones_TPI.h"
 #include "../ejercicios.h"
 #include "gtest/gtest.h"
@@ -32,5 +30,3 @@ TEST(resultadoFinalTEST, all_speakers) {
     EXPECT_NEAR(f1, 0.80, 0.01);
 
 }
-
-*/

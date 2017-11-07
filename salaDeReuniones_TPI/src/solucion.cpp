@@ -94,10 +94,13 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
 /************************** EJERCICIO compararSilencios #7**************************/
 
 float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio){
-
+    return 0.1;
 }
-
-/************************** EJERCICIO sacarPausas #8**************************/
+/************************** EJERCICIO resultadoFinal #8**************************/
+float resultadoFinal(sala m, int freq, int prof, int umbralSilencio){
+      return 0.1;
+}
+/************************** EJERCICIO sacarPausas #9**************************/
 audio sinSilencios(audio s, int freq, int prof, int umbral) {
     audio res = {};
 
@@ -109,7 +112,7 @@ audio sinSilencios(audio s, int freq, int prof, int umbral) {
 
     return res;
 }
-/************************** EJERCICIO encontrarAparicion #9**************************/
+/************************** EJERCICIO encontrarAparicion #10**************************/
 int encontrarAparicion(audio s,audio target, int freq, int prof){
     int index = -1;
     float maximaCorrelacion = 0;
@@ -127,7 +130,7 @@ int encontrarAparicion(audio s,audio target, int freq, int prof){
 
     return index;
 }
-/************************** EJERCICIO medirLaDistancia #10**************************/
+/************************** EJERCICIO medirLaDistancia #11**************************/
 tuple<int,lista_distancias> medirLaDistancia(sala m, audio frase, int freq, int prof){
 
     vector<int> apariciones = {};
