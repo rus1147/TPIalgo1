@@ -92,14 +92,46 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
     return false;
 }
 /************************** EJERCICIO compararSilencios #7**************************/
-
-float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio){
+float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio) {
     return 0.1;
 }
-/************************** EJERCICIO resultadoFinal #8**************************/
-float resultadoFinal(sala m, int freq, int prof, int umbralSilencio){
-      return 0.1;
+/*
+float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio) {
+
+    string nombreArchivo = "datos/spkr" + std::to_string(locutor) + ".txt";
+    int dur = (int) duracion(vec, freq);
+    lista_intervalos tiempos = crearTuplas(nombreArchivo, freq, prof, dur);
+
+    vector<bool> mascara1 = enmascarar(dur, tiempos);
+    //quiero que la máscara devuelva true si hay silencio así que uso la negación lógica
+    negacionLogica(mascara1);
+
+    lista_intervalos vecSilencios = silencios(vec, freq, prof, umbralSilencio);
+    vector<bool> mascaraSilencios = enmascarar(dur, vecSilencios);
+
+    return f1score(mascara1, mascaraSilencios);
 }
+*/
+/************************** EJERCICIO resultadoFinal #8**************************/
+float resultadoFinal(sala m, int freq, int prof, int umbralSilencio) {
+        return 0.1;
+}
+
+/*
+float resultadoFinal(sala m, int freq, int prof, int umbralSilencio){
+    float promedio = 0;
+    int sumaf1 = 0;
+    int cantPersonas = 0;
+    for(int i = 0; i < m.size(); i++){
+        sumaf1 += compararSilencios(m[i], freq, prof, i, umbralSilencio);
+        cantPersonas++;
+    }
+
+    promedio = sumaf1 / cantPersonas;
+    return promedio;
+}
+
+*/
 /************************** EJERCICIO sacarPausas #9**************************/
 audio sinSilencios(audio s, int freq, int prof, int umbral) {
     audio res = {};

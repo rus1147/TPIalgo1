@@ -327,7 +327,7 @@ lista_intervalos crearTuplas (string nombreArchivo, int& frecuencia, int& profun
     int i = 0;
     vector<int> m = leerVectorAudio(nombreArchivo, frecuencia, profundidad, duracion);
     while(i<m.size()){
-        tuple<int, int> tuple1 = make_tuple(m[i],m[i+1]);
+        tuple<float, float> tuple1 = make_tuple(m[i],m[i+1]);
         v.push_back(tuple1);
         i+2;
     }
@@ -347,7 +347,7 @@ vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
 
             } else {
 
-                if (i > get<0>(tiempos[j]) && i <= get<1>(tiempos[j])) {
+                if (i >= get<0>(tiempos[j]) && i < get<1>(tiempos[j])) {
 
                     mascara.push_back(true);
                     i = i + 0, 01;
@@ -361,9 +361,7 @@ vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
         }
 
         while(i < dur){
-            if(i > get<1>(tiempos[j-1])){
-                mascara.push_back(false);
-            }
+            mascara.push_back(false);
             i = i + 0,01;
         }
     }
