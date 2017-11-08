@@ -323,7 +323,7 @@ void negacionLogica (vector<bool> &mascara){
 }
 
 lista_intervalos crearTuplas (string nombreArchivo, int& frecuencia, int& profundidad, int& duracion){
-    lista_intervalos v;
+    lista_intervalos v{};
     int i = 0;
     vector<int> m = leerVectorAudio(nombreArchivo, frecuencia, profundidad, duracion);
     while(i<m.size()){
@@ -331,13 +331,14 @@ lista_intervalos crearTuplas (string nombreArchivo, int& frecuencia, int& profun
         v.push_back(tuple1);
         i+2;
     }
+    return v;
 }
 
-vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
+vector<bool> enmascarar (int dur, lista_intervalos tiempos) {
     float i = 0;
     int j = 0;
     vector<bool> mascara = {};
-
+    while(i < dur){
         while (j < tiempos.size()) {
 
             if (i < get<0>(tiempos[j])) {
@@ -359,8 +360,6 @@ vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
                 }
             }
         }
-
-        while(i < dur){
             mascara.push_back(false);
             i = i + 0,01;
         }

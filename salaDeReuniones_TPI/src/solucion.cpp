@@ -92,15 +92,15 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
     return false;
 }
 /************************** EJERCICIO compararSilencios #7**************************/
-float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio) {
+/*float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio) {
     return 0.1;
-}
-/*
+}*/
+
 float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio) {
 
-    string nombreArchivo = "datos/spkr" + std::to_string(locutor) + ".txt";
-    int dur = (int) duracion(vec, freq);
-    lista_intervalos tiempos = crearTuplas(nombreArchivo, freq, prof, dur);
+    string nombreArchivo = "datos/habla_spkr" + to_string(locutor) + ".txt";
+    int dur =  duracion(vec, freq);
+    lista_intervalos tiempos = crearTuplas(nombreArchivo, freq, prof, dur );
 
     vector<bool> mascara1 = enmascarar(dur, tiempos);
     //quiero que la máscara devuelva true si hay silencio así que uso la negación lógica
@@ -111,7 +111,7 @@ float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSi
 
     return f1score(mascara1, mascaraSilencios);
 }
-*/
+
 /************************** EJERCICIO resultadoFinal #8**************************/
 float resultadoFinal(sala m, int freq, int prof, int umbralSilencio) {
         return 0.1;
