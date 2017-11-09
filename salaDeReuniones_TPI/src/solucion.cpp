@@ -104,7 +104,6 @@ float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSi
     lista_intervalos tiempos = crearTuplas(nombreArchivo);
 
     vector<bool> mascara1 = enmascarar(dur, tiempos);
-    int averqueonda = mascara1.size();
     //quiero que la máscara devuelva true si hay silencio así que uso la negación lógica
     negacionLogica(mascara1);
 

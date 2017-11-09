@@ -466,12 +466,12 @@ int cantFalsosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencios){
 }
 
 float precision (vector<bool> m1, vector<bool> ms){
-    float p = cantVerdaderosPositivos(m1,ms) / (cantVerdaderosPositivos(m1,ms) + cantFalsosPositivos(m1,ms));
+    float p = ((float)cantVerdaderosPositivos(m1,ms)) / ((float)cantVerdaderosPositivos(m1,ms) + (float)cantFalsosPositivos(m1,ms));
     return p;
 }
 
 float recall (vector<bool> m1, vector<bool> ms){
-    float p = cantVerdaderosPositivos(m1,ms) / (cantVerdaderosPositivos(m1,ms) + cantFalsosNegativos(m1,ms));
+    float p = ((float)cantVerdaderosPositivos(m1,ms)) / ((float)cantVerdaderosPositivos(m1,ms) + (float)cantFalsosNegativos(m1,ms));
     return p;
 }
 
