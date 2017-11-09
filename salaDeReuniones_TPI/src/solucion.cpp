@@ -117,14 +117,14 @@ float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSi
 
 float resultadoFinal(sala m, int freq, int prof, int umbralSilencio){
     float promedio = 0;
-    int sumaf1 = 0;
+    float sumaf1 = 0;
     int cantPersonas = 0;
     for(int i = 0; i < m.size(); i++){
         sumaf1 += compararSilencios(m[i], freq, prof, i, umbralSilencio);
         cantPersonas++;
     }
 
-    promedio = sumaf1 / cantPersonas;
+    promedio = sumaf1 / (float)cantPersonas;
     return promedio;
 }
 
