@@ -100,10 +100,11 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
 float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio) {
 
     string nombreArchivo = "datos/habla_spkr" + to_string(locutor) + ".txt";
-    int dur = (int) duracion(vec, freq);
-    lista_intervalos tiempos = crearTuplas(nombreArchivo, freq, prof, dur);
+    float dur =  duracion(vec, freq);
+    lista_intervalos tiempos = crearTuplas(nombreArchivo);
 
     vector<bool> mascara1 = enmascarar(dur, tiempos);
+    int averqueonda = mascara1.size();
     //quiero que la máscara devuelva true si hay silencio así que uso la negación lógica
     negacionLogica(mascara1);
 
@@ -114,11 +115,7 @@ float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSi
 }
 
 /************************** EJERCICIO resultadoFinal #8**************************/
-float resultadoFinal(sala m, int freq, int prof, int umbralSilencio) {
-        return 0.1;
-}
 
-/*
 float resultadoFinal(sala m, int freq, int prof, int umbralSilencio){
     float promedio = 0;
     int sumaf1 = 0;
@@ -132,7 +129,7 @@ float resultadoFinal(sala m, int freq, int prof, int umbralSilencio){
     return promedio;
 }
 
-*/
+
 /************************** EJERCICIO sacarPausas #9**************************/
 audio sinSilencios(audio s, int freq, int prof, int umbral) {
     audio res = {};

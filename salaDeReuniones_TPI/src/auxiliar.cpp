@@ -1,4 +1,7 @@
+#include <iostream>
+#include <fstream>
 #include "auxiliar.h"
+#include <vector>
 #include "math.h"
 #include "Funciones_TPI.h"
 
@@ -327,6 +330,34 @@ int comienzoCorrelacion(audio a, audio frase){
     return suma;
 }
 
+vector<float> leerVectorAudio2(string nombreArchivo) {
+    ifstream miArchivo;
+    float val = 0;
+    vector<float> vec{};
+    int contador = 0;
+
+    miArchivo.open(nombreArchivo.c_str(), ifstream::in);
+    if (miArchivo.is_open()) {
+        while (!miArchivo.eof()) {
+            miArchivo >> val;
+            vec.push_back(val);
+            contador++;
+        }
+    } else {
+
+        if (contador == 0) {
+            cout << "Archivo vacio." << endl;
+        } else {
+            cout << "Error leyendo el archivo." << endl;
+        }
+    }
+
+    miArchivo.close();
+    return vec;
+}
+
+
+
 void negacionLogica (vector<bool> &mascara){
     int i = 0;
     while (i<mascara.size()){
@@ -339,14 +370,16 @@ void negacionLogica (vector<bool> &mascara){
     }
 }
 
-lista_intervalos crearTuplas (string nombreArchivo, int& frecuencia, int& profundidad, int& duracion){
+lista_intervalos crearTuplas (string nombreArchivo){
     lista_intervalos v{};
     int i = 0;
-    vector<int> m = leerVectorAudio(nombreArchivo, frecuencia, profundidad, duracion);
-    while(i<m.size()){
+    int j = 0;
+    vector<float> m = leerVectorAudio2(nombreArchivo);
+    while(j<(m.size()/2)){
         tuple<float, float> tuple1 = make_tuple(m[i],m[i+1]);
         v.push_back(tuple1);
-        i+2;
+        i = i+2;
+        j++;
     }
     return v;
 }
@@ -361,14 +394,14 @@ vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
             if (i < get<0>(tiempos[j])) {
 
                 mascara.push_back(false);
-                i = i + 0, 01;
+                i = i + 0.01;
 
             } else {
 
                 if (i >= get<0>(tiempos[j]) && i < get<1>(tiempos[j])) {
 
                     mascara.push_back(true);
-                    i = i + 0, 01;
+                    i = i + 0.01;
 
                 } else {
 
@@ -378,8 +411,9 @@ vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
             }
         }
             mascara.push_back(false);
-            i = i + 0,01;
+            i = i + 0.01;
         }
+    return mascara;
     }
 
 
