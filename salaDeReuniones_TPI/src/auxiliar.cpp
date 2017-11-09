@@ -1,9 +1,11 @@
 #include "auxiliar.h"
 #include "math.h"
 #include "Funciones_TPI.h"
+
 bool audioValido(audio a,int prof, int freq){
         return duraMasDe(1.0, a, freq) && freqValida(freq) && enRango(a, prof) && profValida(prof) && micFunciona(a, freq);
 }
+
 bool micFunciona(audio a,int freq){
     int i=0;
     while(i<a.size()){
@@ -33,7 +35,7 @@ bool enRango(audio a, int prof){
             k++;
         }
         else{
-            break;
+            return false;
         }
     }
     return true;
@@ -51,16 +53,20 @@ bool sonTodosCeros(vector<int> s){
     }
     return true;
 }
+
 bool duraMasDe(tiempo t, audio a, int freq){
     return duracion(a,freq)>t;
 }
+
 tiempo duracion(audio a,int freq){
     int j=a.size();
     return enSegundos(a.size(),freq);
 }
+
 tiempo enSegundos(int n,int freq){
     return 1.0f*n/freq;
 }
+
 vector<int> subSeq(vector<int> s,int i, int j){
     vector<int> sSubSeq;
     int k=i;
@@ -70,9 +76,11 @@ vector<int> subSeq(vector<int> s,int i, int j){
     }
     return sSubSeq;
 }
+
 bool intervaloEnRango(intervalo i, tiempo durTotal){
     return (0 <= get<0>(i) && get<0>(i)<= get<1>(i) && get<1>(i)<= durTotal);
 }
+
 bool intervalosEnRango(lista_intervalos intervalos,tiempo durTotal){
     int i=0;
     while(i<intervalos.size()){
@@ -85,6 +93,7 @@ bool intervalosEnRango(lista_intervalos intervalos,tiempo durTotal){
     }
     return true;
 }
+
 bool enOrden(lista_intervalos intervalos){
     int i=0;
     while(i<intervalos.size()){
@@ -97,6 +106,7 @@ bool enOrden(lista_intervalos intervalos){
     }
     return true;
 }
+
 bool todosConPrecision(lista_intervalos intervalos,int precision){
     int i=0;
     while(i<intervalos.size()){
@@ -112,6 +122,7 @@ bool todosConPrecision(lista_intervalos intervalos,int precision){
 bool intervalosValidos(lista_intervalos intervalos,tiempo durTotal){
     return intervalosEnRango(intervalos,durTotal) && enOrden(intervalos) && todosConPrecision(intervalos,2);
 }
+
 bool salaValida(sala m, int prof, int freq){
     if(esMatriz(m)){
         int a=0;
@@ -127,6 +138,7 @@ bool salaValida(sala m, int prof, int freq){
         return false;
     }
 }
+
 bool esMatriz(sala m){
     int a=0;
     while(a<m.size()){
@@ -138,6 +150,7 @@ bool esMatriz(sala m){
     }
     return true;
 }
+
 bool hayUnicoAcapador(sala m, int prof, int freq){
     if(m.size()>0){
         int p=0;
@@ -166,24 +179,23 @@ float intensidadMedia(audio s) {
     return sum/s.size();
 }
 
-bool acapara(sala m, int prof, int freq, int p){
-    int x=0;
-    bool acapar=false;
-    if(x!=p){
-        while(x<m.size()){
-            if(intensidadMedia(m[x])<intensidadMedia(m[p])){
-                acapar= true;
-            }
-            x++;
+ bool acapara(sala m, int p, int prof, int freq) {
+    int j = 0;
+    while (j < m.size()) {
+        if (intensidadMedia(m[p]) > intensidadMedia(m[j]) || (j == p)){
+            j++;
+        } else {
+            return false;
         }
     }
-    return acapar;
+     return true;
 }
 
 int indiceEnTiempo(tiempo t,int freq){
     int k=(freq*t);
     return abs(k);
 }
+
 bool audioArdillizado(audio a, audio a0){
     if(a.size()==a0.size()/2){
         int i=0;
@@ -199,6 +211,7 @@ bool audioArdillizado(audio a, audio a0){
     }
     return false;
 }
+
 bool salaArdillizada(sala m, sala m0){
     int a=0;
     while(a<m.size()){
@@ -210,6 +223,7 @@ bool salaArdillizada(sala m, sala m0){
     }
     return true;
 }
+
 bool todosCerosEnPosPares(audio a){
     int i=0;
     bool esCerospar=false;
@@ -223,6 +237,7 @@ bool todosCerosEnPosPares(audio a){
     }
     return esCerospar;
 }
+
 bool hayCerosEnPosPares(audio a,int freq){
     int i=0;
     bool hayceropospar=false;
@@ -238,6 +253,7 @@ bool hayCerosEnPosPares(audio a,int freq){
     }
     return hayceropospar;
 }
+
 void ardillizaraudio(audio& a){
     int i=0;
     audio res{};
@@ -257,6 +273,7 @@ void ponerCerosEnPosPar(audio& a){
         i=i+2;
     }
 }
+
 audio audioSinCeros(audio a){
     int i=0;
     vector<int> res{};
@@ -334,7 +351,7 @@ lista_intervalos crearTuplas (string nombreArchivo, int& frecuencia, int& profun
     return v;
 }
 
-vector<bool> enmascarar (int dur, lista_intervalos tiempos) {
+vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
     float i = 0;
     int j = 0;
     vector<bool> mascara = {};

@@ -11,16 +11,17 @@ bool grabacionValida(audio s, int prof, int freq){
     return audioValido(s,prof,freq);
 }
 /************************** EJERCICIO elAcaparador #2**************************/
-int elAcaparador(sala m, int freq, int prof){
-    int p=0;
-    int personaRes=-1;
-    while(p<m.size()){
-        if(acapara(m,prof,freq,p)){
-           personaRes=p;
+int elAcaparador(sala m, int freq, int prof) {
+    int p = 0;
+    int personaRes;
+    while (p < m.size()) {
+        if (acapara(m, p, prof, freq)) {
+            personaRes = p;
+            return personaRes;
+        } else {
+            p++;
         }
-        p++;
-        }
-    return personaRes;
+    }
 }
 /************************** EJERCICIO ardillizar #3**************************/
 sala ardillizar(sala m, int prof, int freq){
@@ -99,8 +100,8 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
 float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio) {
 
     string nombreArchivo = "datos/habla_spkr" + to_string(locutor) + ".txt";
-    int dur =  duracion(vec, freq);
-    lista_intervalos tiempos = crearTuplas(nombreArchivo, freq, prof, dur );
+    int dur = (int) duracion(vec, freq);
+    lista_intervalos tiempos = crearTuplas(nombreArchivo, freq, prof, dur);
 
     vector<bool> mascara1 = enmascarar(dur, tiempos);
     //quiero que la máscara devuelva true si hay silencio así que uso la negación lógica
