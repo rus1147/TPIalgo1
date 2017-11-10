@@ -33,3 +33,12 @@ TEST(silenciosTEST,unAudio){
         
     }
 }
+
+TEST(silenciosTEST, silencioAlFinal){
+    int prof = 16;
+    int freq = 20;
+    int umbral = 2;
+    audio a = {5,15,0,3,2,10,25,1,0,1,0,4,0,16,17,20,0,0,1,0};
+    lista_intervalos xs = {make_tuple(0.35,0.55),make_tuple(0.8,1.0)};
+    EXPECT_EQ(xs,silencios(a,prof,freq,umbral));
+}
