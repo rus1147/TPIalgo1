@@ -93,38 +93,38 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
     return false;
 }
 /************************** EJERCICIO compararSilencios #7**************************/
-
-float compararSilencios(audio vec, int freq, int prof, int locutor, int umbralSilencio) {
+float compararSilencios(audio a, int freq, int prof, int locutor, int umbralSilencio) {
 
     string nombreArchivo = "datos/habla_spkr" + to_string(locutor) + ".txt";
-    float dur =  duracion(vec, freq);
-    lista_intervalos tiempos = crearTuplas(nombreArchivo);
 
-    vector<bool> mascara1 = enmascarar(dur, tiempos);
+    lista_intervalos tiempos = intervalosDeHablaDesdeArchivo(nombreArchivo);
+
+    tiempo dur = duracion(a, freq);
+
+    vector<bool> mascaraDeArchivo = enmascarar(dur, tiempos);
+
     //quiero que la máscara devuelva true si hay silencio así que uso la negación lógica
-    negacionLogica(mascara1);
+    negacionLogica(mascaraDeArchivo);
 
-    lista_intervalos vecSilencios = silencios(vec, freq, prof, umbralSilencio);
-    vector<bool> mascaraSilencios = enmascarar(dur, vecSilencios);
+    lista_intervalos silenciosMedianteAlgoritmo = silencios(a, prof, freq, umbralSilencio);
 
-    return f1score(mascara1, mascaraSilencios);
+    vector<bool> mascaraDeAlgoritmo = enmascarar(dur, silenciosMedianteAlgoritmo);
+
+    return f1score(mascaraDeArchivo, mascaraDeAlgoritmo);
 }
 
 /************************** EJERCICIO resultadoFinal #8**************************/
-
 float resultadoFinal(sala m, int freq, int prof, int umbralSilencio){
-    float promedio = 0;
     float sumaf1 = 0;
-    int cantPersonas = 0;
-    for(int i = 0; i < m.size(); i++){
+
+    for (int i = 0; i < m.size(); i++){
         sumaf1 += compararSilencios(m[i], freq, prof, i, umbralSilencio);
-        cantPersonas++;
     }
 
-    promedio = sumaf1 / (float)cantPersonas;
-    return promedio;
-}
+    float cantPersonas = m.size();
 
+    return sumaf1 / cantPersonas;
+}
 
 /************************** EJERCICIO sacarPausas #9**************************/
 audio sinSilencios(audio a, int freq, int prof, int umbral) {
