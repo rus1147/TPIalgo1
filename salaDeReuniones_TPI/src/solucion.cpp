@@ -127,17 +127,30 @@ float resultadoFinal(sala m, int freq, int prof, int umbralSilencio){
 
 
 /************************** EJERCICIO sacarPausas #9**************************/
-audio sinSilencios(audio s, int freq, int prof, int umbral) {
-    audio res = {};
-
-    for (int i = 0; i < s.size(); i++) {
-        if (abs(s[i]) >= umbral) {
-            res.push_back(s[i]);
+audio sinSilencios(audio a, int freq, int prof, int umbral) {
+    audio res{};
+    lista_intervalos s = silencios(a, prof, freq, umbral);
+    int i = 0;
+    int j = 0;
+    while (j < s.size()) {
+        if (i < indiceEnTiempo(get<0>(s[j]), freq)) {
+            res.push_back(a[i]);
+            i++;
+        } else {
+            if ((i >= indiceEnTiempo(get<0>(s[j]), freq)) && (i < indiceEnTiempo(get<1>(s[j]), freq))) {
+                i++;
+            } else {
+                j++;
+            }
         }
     }
-
+    while (i < a.size()) {
+        res.push_back(a[i]);
+        i++;
+    }
     return res;
 }
+
 /************************** EJERCICIO encontrarAparicion #10**************************/
 int encontrarAparicion(audio s,audio target, int freq, int prof){
     int index = -1;

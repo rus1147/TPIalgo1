@@ -195,7 +195,7 @@ float intensidadMedia(audio s) {
 }
 
 int indiceEnTiempo(tiempo t,int freq){
-    int k=(freq*t);
+    int k=floor((freq*t));
     return abs(k);
 }
 
@@ -563,7 +563,8 @@ lista_intervalos noSilencios(audio s, int prof, int freq, int umbral){
 
 bool esSilencio(audio a,intervalo inter, int freq, int umbral){
     if(intervaloEnRango(inter,duracion(a,freq))){
-        if((get<1>(inter)-get<0>(inter))>0.1 && conPrecisionEnMuestra(get<0>(inter),freq) && conPrecisionEnMuestra(get<1>(inter),freq)){
+        if((get<1>(inter)-get<0>(inter))>0.1 && conPrecisionEnMuestra(get<0>(inter),freq) &&
+                conPrecisionEnMuestra(get<1>(inter),freq)){
             int k=indiceEnTiempo(get<0>(inter),freq);
             while(k<indiceEnTiempo(get<1>(inter),freq)){
                 if(abs(a[k])<umbral){
