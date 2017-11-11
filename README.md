@@ -15,3 +15,10 @@
 - [x] encontrarAparicion(audio x, audio y) #10
 - [x] medirLaDistancia(sala m, audio frase, int freq, int prof) #11
 
+# Como correr cobertura:
+- (1) Correr proyecto.
+- (2)Desde la carpeta *salaDeReuniones_TPI/src/cmake-build-debug/CMakeFiles/salaDeReunion.dir*, copiar archivos generados a la carpeta *salaDeReuniones_TPI/src/pdir*.
+### es posible que algunos archivos no los pueda leer, por eso los puse en *salaDeReuniones_TPI/src/pdirquenolee*
+- (3) Abrir terminal desde *salaDeReuniones_TPI/src/* y ejecutar `lcov --capture --directory pdir --output-file odir/coverage.info`
+- (4) Luego correr `genhtml odir/coverage.info --output-directory odir/cobertura`
+- (5) Abrir archivo `index.html` localizado en *salaDeReuniones_TPI/src/odir/cobertura*. Aqui pueden ver la cobertura

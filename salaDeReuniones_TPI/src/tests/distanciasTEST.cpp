@@ -1,9 +1,6 @@
 #include "../Funciones_TPI.h"
 #include "../ejercicios.h"
-
 #include "gtest/gtest.h"
-#include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -84,4 +81,3 @@ TEST(distanciasTEST, leerSala) {
 
     EXPECT_EQ(m[2].size(),1000);
 }
-/**/

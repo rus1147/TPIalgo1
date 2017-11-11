@@ -1,8 +1,5 @@
-// Version preliminar. Esto seguramente ni compile, es para tener una idea de la complejidad de los ejercicios.
-
 #include "ejercicios.h"
 #include "Funciones_TPI.h"
-#include "math.h"
 #include "auxiliar.h"
 #include "auxiliar.cpp"
 
@@ -13,7 +10,7 @@ bool grabacionValida(audio s, int prof, int freq){
 /************************** EJERCICIO elAcaparador #2**************************/
 int elAcaparador(sala m, int freq, int prof) {
     int p = 0;
-    int personaRes;
+    int personaRes=0;
     while (p < m.size()) {
         if (acapara(m, p, prof, freq)) {
             personaRes = p;
@@ -22,6 +19,7 @@ int elAcaparador(sala m, int freq, int prof) {
             p++;
         }
     }
+    return personaRes;
 }
 /************************** EJERCICIO ardillizar #3**************************/
 sala ardillizar(sala m, int prof, int freq){
@@ -155,8 +153,7 @@ audio sinSilencios(audio a, int freq, int prof, int umbral) {
 int encontrarAparicion(audio s,audio target, int freq, int prof){
     int index = -1;
     float maximaCorrelacion = 0;
-    int longitudTarget=target.size();
-    int longitudAudio=s.size();
+    
     for (int i = 0; i <= s.size() - target.size(); i++) {
 
         float aux = correlacion(subSeq(s, i, (int) (i + target.size())), target);
@@ -173,25 +170,24 @@ int encontrarAparicion(audio s,audio target, int freq, int prof){
 tuple<int,lista_distancias> medirLaDistancia(sala m, audio frase, int freq, int prof){
 
     vector<int> apariciones = {};
-
+    int locutor = 0;
     for (int i = 0; i < m.size(); i++) {
         apariciones.push_back(encontrarAparicion( m[i],frase, freq, prof));
     }
 
-    int firstTime = m[0].size();
+    int firstTime = (int) m[0].size();
 
     for (int i = 0; i < m.size(); i++) {
         if (apariciones[i] < firstTime) {
             firstTime = apariciones[i];
         }
     }
-
-    int locutor;
+    
     float maximaIntensidadMedia = 0;
 
     for (int i = 0; i < m.size(); i++) {
         if (apariciones[i] == firstTime) {
-            float im = intensidadMedia(subSeq(m[i], firstTime, firstTime + frase.size()));
+            float im = intensidadMedia(subSeq(m[i], firstTime, (int) (firstTime + frase.size())));
 
             if (im > maximaIntensidadMedia) {
                 maximaIntensidadMedia = im;
@@ -204,7 +200,7 @@ tuple<int,lista_distancias> medirLaDistancia(sala m, audio frase, int freq, int 
 
     for (int i = 0; i < m.size(); i++) {
         if (i != locutor) {
-            distancias.push_back((apariciones[i] - firstTime)*VELOCIDAD_SONIDO/freq);
+            distancias.push_back((float &&) ((apariciones[i] - firstTime) * VELOCIDAD_SONIDO / freq));
         }
     }
 
