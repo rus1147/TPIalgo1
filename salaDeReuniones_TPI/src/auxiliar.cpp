@@ -61,13 +61,11 @@ bool duraMasDe(tiempo t, audio a, int freq){
     return duracion(a,freq)>t;
 }
 
-tiempo duracion(audio a,int freq){
-    int j=a.size();
-    return enSegundos(a.size(),freq);
+tiempo duracion(audio a, int freq){
+    return enSegundos(a.size(), freq);
 }
-
-tiempo enSegundos(int n,int freq){
-    return 1.0f*n/freq;
+tiempo enSegundos(float n, float freq){
+    return n/freq;
 }
 
 vector<int> subSeq(vector<int> s,int i, int j){
@@ -356,128 +354,130 @@ vector<float> leerVectorAudio2(string nombreArchivo) {
     return vec;
 }
 
-
-
 void negacionLogica (vector<bool> &mascara){
-    int i = 0;
-    while (i<mascara.size()){
-        if (mascara[i]==true){
-            mascara[i]=false;
-        } else {
-            mascara[i]=true;
-        }
-        i++;
+    for (int i = 0; i < mascara.size(); i++) {
+        mascara[i] = !mascara[i];
     }
 }
 
-lista_intervalos crearTuplas (string nombreArchivo){
-    lista_intervalos v{};
-    int i = 0;
-    int j = 0;
-    vector<float> m = leerVectorAudio2(nombreArchivo);
-    while(j<(m.size()/2)){
-        tuple<float, float> tuple1 = make_tuple(m[i],m[i+1]);
-        v.push_back(tuple1);
-        i = i+2;
-        j++;
-    }
-    return v;
-}
+vector<bool> enmascarar (tiempo duracion, lista_intervalos tiempos) {
 
-vector<bool> enmascarar (float dur, lista_intervalos tiempos) {
-    float i = 0;
+    tiempo maskLength = 0.01;
+    tiempo i = 0;
+
     int j = 0;
+
     vector<bool> mascara = {};
-    while(i < dur){
-        while (j < tiempos.size()) {
 
-            if (i < get<0>(tiempos[j])) {
+    while (i < duracion) {
 
-                mascara.push_back(false);
-                i = i + 0.01;
+        if (j >= tiempos.size() || i < get<0>(tiempos[j])) {
 
-            } else {
-
-                if (i >= get<0>(tiempos[j]) && i < get<1>(tiempos[j])) {
-
-                    mascara.push_back(true);
-                    i = i + 0.01;
-
-                } else {
-
-                    j++;
-
-                }
-            }
-        }
             mascara.push_back(false);
-            i = i + 0.01;
+            i = i + maskLength;
+
+        } else if (i < get<1>(tiempos[j])) {
+
+            mascara.push_back(true);
+            i = i + maskLength;
+
+        } else {
+            j++;
         }
+    }
+
     return mascara;
+}
+
+lista_intervalos intervalosDeHablaDesdeArchivo(string nombreArchivo) {
+    lista_intervalos intervalos = {};
+
+    ifstream archivo;
+    archivo.open(nombreArchivo.c_str(), ifstream::in);
+
+    if (archivo.is_open()) {
+
+        float intervaloInicio = -2;
+        float intervaloFin = -2;
+
+        while (!archivo.eof()) {
+
+            archivo >> intervaloInicio;
+            archivo >> intervaloFin;
+
+            if (intervaloInicio >= 0 && intervaloFin >= 0) {
+                intervalos.push_back(make_tuple(intervaloInicio, intervaloFin));
+            }
+
+            intervaloInicio = -1;
+            intervaloFin = -1;
+        }
+
+        if (intervaloInicio == -2) {
+            cout << "Archivo vacio: " << nombreArchivo << endl;
+        }
+
+    } else {
+        cout << "Error leyendo el archivo: " << nombreArchivo << endl;
     }
 
+    archivo.close();
+    return intervalos;
+}
 
-int cantVerdaderosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios){
-    int i = 0;
+int cantVerdaderosPositivos (vector<bool> esperado, vector<bool> generado) {
     int cant = 0;
-    while(i < mascara1.size()){
-        if(mascara1[i] == true && mascaraSilencios[i] == true){
+
+    for (int i = 0; i < generado.size(); i++) {
+        if (generado[i] == true && esperado[i] == true) {
             cant++;
         }
-        i++;
     }
+
     return cant;
 }
 
-int cantVerdaderosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencios){
-    int i = 0;
+int cantFalsosPositivos (vector<bool> esperado, vector<bool> generado) {
     int cant = 0;
-    while(i < mascara1.size()){
-        if(mascara1[i] == false && mascaraSilencios[i] == false){
+
+    for (int i = 0; i < generado.size(); i++) {
+        if (generado[i] == true && esperado[i] == false) {
             cant++;
         }
-        i++;
     }
+
     return cant;
 }
 
-int cantFalsosPositivos (vector<bool> mascara1, vector<bool> mascaraSilencios) {
-    int i = 0;
+int cantFalsosNegativos (vector<bool> esperado, vector<bool> generado) {
     int cant = 0;
-    while(i < mascara1.size()){
-        if(mascara1[i] == false && mascaraSilencios[i] == true){
+
+    for (int i = 0; i < generado.size(); i++) {
+        if (generado[i] == false && esperado[i] == true) {
             cant++;
         }
-        i++;
     }
+
     return cant;
 }
 
-int cantFalsosNegativos (vector<bool> mascara1, vector<bool> mascaraSilencios){
-    int i = 0;
-    int cant = 0;
-    while(i < mascara1.size()){
-        if(mascara1[i] == true && mascaraSilencios[i] == false){
-            cant++;
-        }
-        i++;
-    }
-    return cant;
+float precision (vector<bool> esperado, vector<bool> generado) {
+    float vp = cantVerdaderosPositivos(esperado, generado);
+    float fp = cantFalsosPositivos(esperado, generado);
+    return vp / (vp + fp);
 }
 
-float precision (vector<bool> m1, vector<bool> ms){
-    float p = ((float)cantVerdaderosPositivos(m1,ms)) / ((float)cantVerdaderosPositivos(m1,ms) + (float)cantFalsosPositivos(m1,ms));
-    return p;
+float recall (vector<bool> esperado, vector<bool> generado) {
+    float vp = cantVerdaderosPositivos(esperado, generado);
+    float fn = cantFalsosNegativos(esperado, generado);
+    return vp / (vp + fn);
 }
 
-float recall (vector<bool> m1, vector<bool> ms){
-    float p = ((float)cantVerdaderosPositivos(m1,ms)) / ((float)cantVerdaderosPositivos(m1,ms) + (float)cantFalsosNegativos(m1,ms));
-    return p;
-}
+float f1score (vector<bool> esperado, vector<bool> generado){
+    float prec = precision(esperado, generado);
+    float reca = recall(esperado, generado);
 
-float f1score (vector<bool> m1, vector<bool> ms){
-    float f1 = 2 * ((precision(m1,ms) * recall(m1,ms)) / (precision(m1,ms) + recall(m1,ms)));
-    return f1;
+    return 2*(prec*reca)/(prec + reca);
 }
 
 intervalo makeInterval(float intervalBeginning, float intervalEnding, int freq) {
