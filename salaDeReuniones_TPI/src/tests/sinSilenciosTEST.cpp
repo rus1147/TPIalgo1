@@ -32,5 +32,15 @@ TEST(sinSilenciosTEST, audioSinSilencios){
 }
 
 
+TEST(sinSilenciosTEST, todoSilencio){
+    int prof = 32;
+    int freq = 10;
+    int umbral = 100;
+    audio a = {30,35,39,40,58,19};
+    audio res = {};
+    EXPECT_EQ(res, sinSilencios(a,freq,prof,umbral));
+}
+
+
 
 

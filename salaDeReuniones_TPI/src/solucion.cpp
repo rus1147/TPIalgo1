@@ -130,22 +130,16 @@ audio sinSilencios(audio a, int freq, int prof, int umbral) {
     lista_intervalos s = silencios(a, prof, freq, umbral);
     int i = 0;
     int j = 0;
-    while (j < s.size()) {
-        if (i < indiceEnTiempo(get<0>(s[j]), freq)) {
+    while (i < a.size()){
+        if (j >= s.size() || i < indiceEnTiempo(get<0>(s[j]), freq)) {
             res.push_back(a[i]);
             i++;
-        } else {
-            if ((i >= indiceEnTiempo(get<0>(s[j]), freq)) && (i < indiceEnTiempo(get<1>(s[j]), freq))) {
+        } else if (i < indiceEnTiempo(get<1>(s[j]), freq)) {
                 i++;
             } else {
                 j++;
             }
         }
-    }
-    while (i < a.size()) {
-        res.push_back(a[i]);
-        i++;
-    }
     return res;
 }
 
