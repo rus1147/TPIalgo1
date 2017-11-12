@@ -5,31 +5,40 @@
 
 /************************** EJERCICIO grabacionValida #1 **************************/
 bool grabacionValida(audio s, int prof, int freq){
-    return audioValido(s,prof,freq);
+    return freqValida(freq) &&
+            enRango(s, prof) &&
+            profValida(prof) &&
+            micFunciona(s, freq) &&
+            duraMasDe(1.0, s, freq);
 }
+
 /************************** EJERCICIO elAcaparador #2**************************/
 int elAcaparador(sala m, int freq, int prof) {
-    int p = 0;
-    int personaRes=0;
-    while (p < m.size()) {
-        if (acapara(m, p, prof, freq)) {
-            personaRes = p;
-            return personaRes;
-        } else {
-            p++;
+
+    float maximaIntensidadMedia = 0;
+    int locutor = 0;
+
+    for (int i = 0; i < m.size(); i++) {
+
+        float im = intensidadMedia(m[i]);
+
+        if (im > maximaIntensidadMedia) {
+            maximaIntensidadMedia = im;
+            locutor = i;
         }
     }
-    return personaRes;
+
+    return locutor;
 }
+
 /************************** EJERCICIO ardillizar #3**************************/
 sala ardillizar(sala m, int prof, int freq){
-    int i=0;
-    sala resultado{};
-    while(i<m.size()){
-        ardillizaraudio(m[i]);
-        resultado.push_back(m[i]);
-        i++;
+    sala resultado = {};
+
+    for (int i = 0; i < m.size(); i++) {
+        resultado.push_back(ardillizarAudio(m[i]));
     }
+
     return resultado;
 }
 /************************** EJERCICIO flashElPerezoso #4**************************/
@@ -83,7 +92,7 @@ bool hayQuilombo(sala m, int prof, int freq, int umbral){
     for (int i = 1; i < m.size(); i++) {
         lista_intervalos intervalos = noSilencios(m[i], prof, freq, umbral);
 
-        if (!mergeAndValidate(itervalosAcum, intervalos)) {
+        if (!mergearYCheckearIntervalos(itervalosAcum, intervalos)) {
             return true;
         }
     }
@@ -128,18 +137,21 @@ float resultadoFinal(sala m, int freq, int prof, int umbralSilencio){
 audio sinSilencios(audio a, int freq, int prof, int umbral) {
     audio res{};
     lista_intervalos s = silencios(a, prof, freq, umbral);
+
     int i = 0;
     int j = 0;
-    while (i < a.size()){
+
+    while (i < a.size()) {
         if (j >= s.size() || i < indiceEnTiempo(get<0>(s[j]), freq)) {
             res.push_back(a[i]);
             i++;
         } else if (i < indiceEnTiempo(get<1>(s[j]), freq)) {
-                i++;
-            } else {
-                j++;
-            }
+            i++;
+        } else {
+            j++;
         }
+    }
+
     return res;
 }
 
@@ -166,7 +178,7 @@ tuple<int,lista_distancias> medirLaDistancia(sala m, audio frase, int freq, int 
     vector<int> apariciones = {};
     int locutor = 0;
     for (int i = 0; i < m.size(); i++) {
-        apariciones.push_back(encontrarAparicion( m[i],frase, freq, prof));
+        apariciones.push_back(encontrarAparicion(m[i], frase, freq, prof));
     }
 
     int firstTime = (int) m[0].size();
