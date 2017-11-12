@@ -328,32 +328,6 @@ int comienzoCorrelacion(audio a, audio frase){
     return suma;
 }
 
-vector<float> leerVectorAudio2(string nombreArchivo) {
-    ifstream miArchivo;
-    float val = 0;
-    vector<float> vec{};
-    int contador = 0;
-
-    miArchivo.open(nombreArchivo.c_str(), ifstream::in);
-    if (miArchivo.is_open()) {
-        while (!miArchivo.eof()) {
-            miArchivo >> val;
-            vec.push_back(val);
-            contador++;
-        }
-    } else {
-
-        if (contador == 0) {
-            cout << "Archivo vacio." << endl;
-        } else {
-            cout << "Error leyendo el archivo." << endl;
-        }
-    }
-
-    miArchivo.close();
-    return vec;
-}
-
 void negacionLogica (vector<bool> &mascara){
     for (int i = 0; i < mascara.size(); i++) {
         mascara[i] = !mascara[i];

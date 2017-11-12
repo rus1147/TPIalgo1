@@ -8,8 +8,8 @@ TEST(sinSilenciosTEST, audio1){
     int prof = 16;
     int freq = 20;
     int umbral = 2;
-    audio a = {5,15,0,3,2,10,25,1,0,1,0,4,0,16,17,20,0,0,1,0};
-    audio res = {5,15,0,3,2,10,25,4,0,16,17,20};
+    audio a = {5,15,0,3,2,10,25,1,0,1,0,4,0,16,12,17,20,0,0,1,0,6,8,22,14,17,20,6,9,13,0,0,0};
+    audio res = {5,15,0,3,2,10,25,4,0,16,12,17,20,6,8,22,14,17,20,6,9,13};
     EXPECT_EQ(res,sinSilencios(a,freq,prof,umbral));
 }
 
@@ -26,20 +26,12 @@ TEST(sinSilenciosTEST, audioSinSilencios){
     int prof = 32;
     int freq = 15;
     int umbral = 20;
-    audio a = {30,35,39,40,58,19};
+    audio a = {30,35,39,40,58,19,63,28,30,45,44,68,51,27,36,92,101,54};
     audio res = a;
     EXPECT_EQ(res, sinSilencios(a,freq,prof,umbral));
 }
 
 
-TEST(sinSilenciosTEST, todoSilencio){
-    int prof = 32;
-    int freq = 10;
-    int umbral = 100;
-    audio a = {30,35,39,40,58,19};
-    audio res = {};
-    EXPECT_EQ(res, sinSilencios(a,freq,prof,umbral));
-}
 
 
 

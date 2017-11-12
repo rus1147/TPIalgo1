@@ -16,7 +16,7 @@ TEST(grabacionValidaTEST, otraValida) {
     int freq = 12;
     int prof = 32;
     audio a = {1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6};
-    EXPECT_EQ(true,grabacionValida(a,32,12));
+    EXPECT_EQ(true,grabacionValida(a,prof,freq));
 }
 
 TEST(grabacionValidaTEST, noValida) {
